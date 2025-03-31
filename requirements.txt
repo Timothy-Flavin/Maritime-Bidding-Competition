@@ -1,7 +1,21 @@
+argcomplete==3.6.1
+attrs==25.3.0
 certifi==2025.1.31
 cffi==1.17.1
+loguru==0.7.3
+mable==0.0.13.post3
+marshmallow==3.26.1
+networkx==3.4.2
 numpy==2.2.4
 packaging==24.2
+pandas==2.2.3
+prettytable==3.16.0
 pybind11==2.13.6
 pycparser==2.22
+python-dateutil==2.9.0.post0
+pytz==2025.2
+simplification==0.7.13
+six==1.17.0
+tzdata==2025.2
+wcwidth==0.2.13
 wheel @ file:///opt/homebrew/Cellar/python%403.13/3.13.2/libexec/wheel-0.45.1-py3-none-any.whl#sha256=b9235939e2096903717cb6bfc132267f8a7e46deb2ec3ef9c5e234ea301795d0
