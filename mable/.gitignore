@@ -1,0 +1,30 @@
+#Python
+__pycache__
+*.json
+#PyCharm
+.idea
+#Emacs
+*~
+#Misc
+*.log
+
+*.bak
+
+# Building
+dist/
+
+# Sphinx
+docs/build/
+docs/source/*.rst
+
+port_cargo_weight_distribution.csv
+port_trade_frequency_distribution.csv
+ports.csv
+precomputed_routes.pickle
+routing_graph_world_mask.pkl
+time_transition_distribution.csv
+*.csv
+
+mable.egg-info/
+mable_resources.zip
+mable_tournament.sif

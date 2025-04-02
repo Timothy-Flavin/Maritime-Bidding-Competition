@@ -1,0 +1,23 @@
+Bootstrap: docker
+From: python:3
+
+%files
+
+%setup
+    ./prepare_build.sh
+    python3 -m build maritime_simulator --outdir $SINGULARITY_ROOTFS/opt/dist
+
+%post
+    apt-get -y update
+    python -m venv /opt/venv
+    /opt/venv/bin/pip install --upgrade pip
+    /opt/venv/bin/pip install /opt/dist/MABLE-*-py3-none-any.whl
+
+%environment
+    export LC_ALL=C
+    export PATH=$PATH
+
+%runscript
+    export VIRTUAL_ENV=/opt/venv
+    export PATH="$VIRTUAL_ENV/bin:$PATH"
+    exec "$@"

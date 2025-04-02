@@ -1,0 +1,42 @@
+[project]
+name = "mable"
+version = "0.0.13-3"
+description = "Maritime Agent-Based Logistics Emulator."
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+readme = "README.md"
+dependencies = [
+    "argcomplete>=3.5.3",
+    "attrs>=25.1.0",
+    "loguru>=0.7.3",
+    "marshmallow>=3.26.1",
+    "networkx>=3.4.2",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
+    "prettytable>=3.14.0",
+    "simplification>=0.7.13",
+]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "myst-parser>=4.0.1",
+    "pytest>=8.3.4",
+    "pytest-mock>=3.14.0",
+    "sphinx>=8.2.1",
+    "sphinx-paramlinks>=0.6.0",
+    "sphinx-rtd-theme>=3.0.2",
+    "tomli-w>=1.2.0",
+]
+
+[project.urls]
+Documentation = "https://mable-doc.netlify.app/"
+Repository = "https://github.com/jbuerman/mable"
+
+[project.scripts]
+mable = "mable.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
