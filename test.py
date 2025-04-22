@@ -6,6 +6,7 @@ import pandas as pd
 import pickle
 import random
 from mable.transport_operation import Vessel, Trade, ScheduleProposal, Schedule
+import time
 
 
 class Simulated_Anealing:
@@ -20,21 +21,68 @@ class Simulated_Anealing:
         paths,  # dict[port_name1+port_name2][0] = 'length', 'route'
         boats,  # List of boats
     ):
+        start_time = time.time()
+        print("Running Simulated Annealing...")
         ports, cutoffs, boatwise_ports, unused_ports = self.make_new_random_genome(
             trades, boats
         )
-        trades_fulfilled, travel_cost = self.calculate_trades_fullfilled(
-            boatwise_ports, trades, paths
+        trades_fulfilled, travel_cost, schedules = self.calculate_trades_fullfilled(
+            boatwise_ports, trades, paths, boats
+        )
+        initial_fitness = self.fitness(
+            trades_fulfilled, travel_cost, schedules, boats, paths
         )
 
+        iteration = 0
+        temperature = 1000  # Initial temperature for simulated annealing
+        alpha = 0.99  # Cooling rate for temperature
+        while time.time() - start_time < 40:  # Run for 40 seconds
+            iteration += 1
+            if temperature > 0.1:  # Stop if temperature is too low
+                temperature *= alpha  # Decrease temperature
+
+            new_ports, new_cutoffs, new_boatwise_ports, new_unused_ports = (
+                self.mutate_genome(ports, cutoffs, boatwise_ports, unused_ports)
+            )
+
+            new_trades_fulfilled, new_travel_cost, new_schedules = (
+                self.calculate_trades_fullfilled(
+                    new_boatwise_ports, trades, paths, boats
+                )
+            )
+            new_fitness = self.fitness(
+                new_trades_fulfilled, new_travel_cost, new_schedules, boats, paths
+            )
+
+            # Simulated annealing update step TODO: Add temperature control
+            if new_fitness > initial_fitness or random.random() < math.exp(
+                (new_fitness - initial_fitness) / temperature
+            ):
+                # Accept the new genome
+                ports = new_ports
+                cutoffs = new_cutoffs
+                boatwise_ports = new_boatwise_ports
+                unused_ports = new_unused_ports
+                trades_fulfilled = new_trades_fulfilled
+                travel_cost = new_travel_cost
+                schedules = new_schedules
+                initial_fitness = new_fitness
+
     def make_new_random_genome(self, trades, boats: list[Vessel]):
+        print("  Making new random genome...")
         ports = self.get_active_ports(trades)
+
+        print("    Active ports: ", ports)
         cutoffs = []
         for cutoff in range(len(boats)):
             cutoffs.append(random.randint(0, len(ports) - 1))
         cutoffs.sort()  # sort the cutoffs so that we can use them to partition the genome
         # randomize the order of the ports
-        random.shuffle(ports)
+        random.shuffle(ports)  # randomize the order of the ports
+        # Now we have a random genome, we need to partition the ports into the boats
+
+        print(f"    Cutoffs: {cutoffs}")
+        print(f"    Ports after shuffle: {ports}")
 
         boatwise_ports = []
         for boat in range(len(boats)):
@@ -46,7 +94,8 @@ class Simulated_Anealing:
             else:
                 boatwise_ports.append([boats[boat].location()])  # Deal with OnJourney
 
-            # now we partition the ports into the boats using the cutoffs
+        print(f"    Boatwise ports before partitioning: {boatwise_ports}")
+        # now we partition the ports into the boats using the cutoffs
         cutoff_index = 0
         port_index = 0
         unused_ports = []
@@ -61,6 +110,9 @@ class Simulated_Anealing:
                 port_index += 1
             else:
                 cutoff_index += 1
+
+        print(f"    Boatwise ports before partitioning: {boatwise_ports}")
+        print(f"    Unused ports: {unused_ports}")
         return ports, cutoffs, boatwise_ports, unused_ports
 
     def get_active_ports(self, trades):
@@ -70,121 +122,97 @@ class Simulated_Anealing:
             ports.append(trade.destination_port.name)
         return ports
 
-    def calculate_trades_fullfilled(self, boatwise_ports, trades, paths, boats):
-        # TODO: This is a knapsack problem so we want to find a better
+    # Given a set of genomes for the boats, boatwise ports, this function
+    # calculates the trades that can be fulfilled legally by each boat
+    # given this genome and it returns the resulting schedule for each boat
+    def calculate_trades_fullfilled(
+        self, boatwise_ports, trades, paths, boats: list[Vessel]
+    ):
+        print("  Calculating trades fulfilled...")
+        # TODO: This is a bin packing problem so we want to find a better
         # way than what Tim Wrote below
         boatwise_trades = []  # List of trades fulfilled by each boat
         boatwise_cargo = []  # The cargo at each port
+        schedules: list[Schedule] = []
 
         # assume we have no cargo
         for boat in range(len(boatwise_ports)):
             boatwise_cargo.append({})
             for cargo_type in boats[boat].cargo_types:
                 boatwise_cargo[boat][cargo_type] = [0] * len(boatwise_ports[boat])
+            schedules.append(boats[boat].schedule)
 
         for trade in trades:
             for boat in len(boatwise_ports):
-                schedule = Schedule(boats[boat])
                 # Get index of trade origin poirt in boatwise_ports[boat]
-                pickup_ind = boatwise_ports[boat].index(trade.origin_port.name)
-                if pickup_ind == -1:
+                pickup_indices = [
+                    i
+                    for i, x in enumerate(boatwise_ports[boat])
+                    if x == trade.origin_port.name
+                ]  # gets all instances of pickup port in genome
+                if len(pickup_indices) == 0:
                     continue
                 else:
-                    dropoff_ind = boatwise_ports[boat].index(
-                        trade.destination_port.name
-                    )
-                    if dropoff_ind == -1:
+                    dropoff_indices = [
+                        i
+                        for i, x in enumerate(boatwise_ports[boat])
+                        if x == trade.origin_port.name
+                    ]  # gets all instances of dropoff port in genome
+                    if len(dropoff_indices) == 0:
                         continue
-                    elif dropoff_ind > pickup_ind:
-                        self.check_trade_legality(
-                            trade,
-                            boatwise_cargo[boat],
-                            boats[boat],
-                            boatwise_ports[boat],
-                            pickup_ind,
-                            dropoff_ind,
-                        )
 
-    def check_trade_legality(
+                    cost = 1000000000  # Set a high cost to start with
+                    for pi in pickup_indices:
+                        for do in dropoff_indices:
+                            # if the trade can be fulfilled by multiple segments
+                            # choose the one with the lowest travel cost
+                            est_cost, insertion1, insertion2 = self.check_trade_cost(
+                                trade,
+                                boats[boat],
+                                boatwise_trades[boat],
+                                pi,
+                                do,
+                            )
+                            if est_cost < cost:
+                                cost = est_cost
+                                boatwise_trades[boat].append((pi, do))
+                                sch: Schedule = schedules[boat]
+                                sch.add_transportation(
+                                    trade,
+                                    insertion1,
+                                    insertion2,
+                                )
+                                break  # go to next trade
+
+    # Returns the increase in travel time and the insertion points
+    # for a proposed trade in the boat's schedule
+    def check_trade_cost(
         self,
         trade: Trade,
-        boat_cargo,
         boat: Vessel,
-        boat_ports,
-        pickup_ind,
-        dropoff_ind,
+        boatwise_trades,
+        pickup_ind: int,
+        dropoff_ind: int,
         paths,
     ):
         if trade.cargo_type not in boat.loadable_cargo_types():
-            return False
+            return math.inf, 0, 0  # Cargo type not loadable by this boat
 
-        capacity = boat.capacity(
-            trade.cargo_type
-        )  # Get the capacity of the boat for this cargo type
-        capacity_used = 0
-        time_at_port = 0  # Not used in this function, but could be useful later
-        for p in range(len(boat_ports)):
-            paths[boat_ports[p] + boat_ports[p + 1]][
-                0
-            ].length  # Get the time to get to the next port
-            capacity_used += boat_cargo[trade.cargo_type][p]
-            if p == pickup_ind:
-                capacity_used += trade.amount
-            if p == dropoff_ind:
-                capacity_used -= trade.amount
-            if capacity_used > capacity:
-                return False
-        # If we get here, the trade is legal
+        sched_copy = boat.schedule.copy()
+        # Add the trade to the schedule copy
+        sched_copy.get_insertion_points()
+
+        print("  Checking trade cost for:", trade)
+        print("  Pickup index:", pickup_ind, "Dropoff index:", dropoff_ind)
+        print(f"  schedule: {sched_copy}")
+        print(f"  insertion points: {sched_copy.get_insertion_points()}")
+
         return True
 
-    def fitness(
-        self,
-        genome_port_list,  # List of port tuples port_name
-        genome_partitions,
-        all_trades,  # List of all trades
-        paths,  # dict[port_name1+port_name2][0] = 'length', 'route'
-        n_boats,
-        starting_ports,
-    ):
-        genome_port_index = 0  # the item in the genome we are dealing with
-        boat_num = 0
-        # The port list is our full path, the item_list is the item destinations in this genome
-        proposed_port_path = []
-        proposed_port_path.append([starting_ports[0]])  # first boat start
-        time_at_each_port = []
-        time_at_each_port.append([0])  # first boat start
-
-        # first we fix the genome by adding in free items that are already in the path
-        # and we also
-        while genome_port_index < len(genome_port_list):
-            # if the item we are looking at is the partition number then we need to move
-            # to the next boat's tasks because it is the first item in a next boat's inventory
-            while (
-                genome_port_index == genome_partitions[boat_num]
-                and boat_num < n_boats - 1
-            ):
-                boat_num += 1
-                proposed_port_path.append(
-                    [starting_ports[boat_num]]
-                )  # next boat start new path array
-                time_at_each_port.append([0])  # start at time 0 for the next boat
-
-            # Now we add the item to the boat's path and update the time at each port
-            proposed_port_path[boat_num].append(genome_port_list[genome_port_index])
-            time_at_each_port[boat_num].append(  # time to get to the first item
-                float(
-                    paths[
-                        proposed_port_path[boat_num][-2]
-                        + proposed_port_path[boat_num][-1]
-                    ][0].length
-                )
-                + time_at_each_port[boat_num][-1]  # plus previous time.
-                # Might change this away from cumulative time later
-            )
-            genome_port_index += 1
-
-        # for boat in range(n_boats):
-        #    calculate_items_per_boat(proposed_port_path[boat], time_at_each_port[boat])
+    def fitness(self, trades_fulfilled, travel_cost, schedules, boats, paths):
+        return (
+            len(trades_fulfilled) / travel_cost * 1000
+        )  # TODO: Implement fitness function
 
 
 class Companyn(TradingCompany):
@@ -205,6 +233,7 @@ class Companyn(TradingCompany):
 
     def inform(self, trades, *args, **kwargs):
         print(f"Company {self._name} received trades: {trades}")
+        schedule = Schedule(self.vessels[0])  # Just using the first vessel for now
         for trade in trades:
             print(trade)
             print(trade.origin_port.name, trade.destination_port)
