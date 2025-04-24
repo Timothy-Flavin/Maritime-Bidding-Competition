@@ -47,14 +47,14 @@ def is_feasible(trades, sequence):
     visited = {}
     for ch in sequence:
         t = trades[ch.upper()]  # Get the time windows for the port
-        if ch.isupper():
+        if ch.isupper(): # Pickup
             time = max(time, t[0])  # Earliest pickup
             if time > t[1]: return False  # Too late for pickup
             visited[ch.upper()] = time
-        else:
+        else: # Dropoff
             if ch.upper() not in visited: return False  # Dropoff before pickup
             time = max(time, t[2])  # Earliest dropoff
-            if time > t[3]: return False  # Too late
+            if time > t[3]: return False  # Too late for dropoff
     return True
 
 # Generate orders based on different criteria
@@ -78,16 +78,13 @@ def generate_init_schedules(trades):
 # Generate 100 schedules by swapping adjacent ports
 def generate_schedules(trades, num_schedules=100):
     schedules = generate_init_schedules(trades)
-    i = 0
     while len(schedules) < num_schedules:
-        i+=1
         schedule = list(random.choice(schedules))  # Pick a random schedule
         idx = random.randint(0, len(schedule) - 2)  # Pick a random adjacent pair
         schedule[idx], schedule[idx + 1] = schedule[idx + 1], schedule[idx]  # Swap them
         schedule = ''.join(schedule)  # Convert back to string
-        if schedule not in schedules and is_feasible(trades, schedule):  # Check if the new schedule is unique and valid
-            schedules.append(''.join(schedule))
-    print(i)
+        if schedule not in schedules and is_feasible(trades, schedule):  # Check if the new schedule is unique and feasible
+            schedules.append(schedule)
     return schedules
 
 if __name__ == "__main__":
