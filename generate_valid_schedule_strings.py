@@ -41,7 +41,7 @@ def plot_schedule(trades):
     plt.tight_layout()
     plt.show()
 
-def is_feasible(trades, sequence):
+def is_feasible(sequence, trades):
     # Check uppercase precedes lowercase, and time feasibility
     time = 0
     visited = {}
@@ -80,10 +80,10 @@ def generate_schedules(trades, num_schedules=100):
     schedules = generate_init_schedules(trades)
     while len(schedules) < num_schedules:
         schedule = list(random.choice(schedules))  # Pick a random schedule
-        idx = random.randint(0, len(schedule) - 2)  # Pick a random adjacent pair
-        schedule[idx], schedule[idx + 1] = schedule[idx + 1], schedule[idx]  # Swap them
+        i = random.randint(0, len(schedule) - 2)  # Pick a random adjacent pair
+        schedule[i], schedule[i + 1] = schedule[i + 1], schedule[i]  # Swap them
         schedule = ''.join(schedule)  # Convert back to string
-        if schedule not in schedules and is_feasible(trades, schedule):  # Check if the new schedule is unique and feasible
+        if schedule not in schedules and is_feasible(schedule, trades):  # Check if the new schedule is unique and feasible
             schedules.append(schedule)
     return schedules
 
@@ -108,9 +108,7 @@ if __name__ == "__main__":
 
     # Generate schedules
     schedules = generate_schedules(fixed_trades)
-
-    # Print the generated schedules
-    for i, schedule in enumerate(schedules):
-        print(f"Schedule {i + 1}: {schedule}")
+    schedules.sort()
+    print(schedules)
 
     plot_schedule(fixed_trades)
