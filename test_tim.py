@@ -5,7 +5,7 @@ import math
 import pandas as pd
 import pickle
 import random
-from mable.transport_operation import Vessel, Trade, ScheduleProposal, Schedule
+from mable.transport_operation import Vessel, Trade, Schedule
 import time
 
 
