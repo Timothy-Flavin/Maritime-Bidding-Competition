@@ -1,5 +1,18 @@
 import matplotlib.pyplot as plt
 import random
+import time
+
+def generate_trades(num_trades, allow_nones=True):
+    # Generate random trades with time windows
+    ports = [chr(i) for i in range(65, 65 + num_trades)]  # A-Z
+    trades = {}
+    for port in ports:
+        ep = None if allow_nones and random.random() < 0.2 else random.randint(1, 10)
+        lp = None if allow_nones and random.random() < 0.2 else random.randint(ep, 20)
+        ed = None if allow_nones and random.random() < 0.2 else random.randint(1, 10)
+        ld = None if allow_nones and random.random() < 0.2 else random.randint(ed, 20)
+        trades[port] = (ep, lp, ed, ld)
+    return trades
 
 # Fix trades by ensuring all time windows are integers
 def fix_trades(trades):
@@ -76,7 +89,7 @@ def generate_init_schedules(trades):
     return [''.join(earliest_order), ''.join(midpoint_order), ''.join(latest_order)]
 
 # Generate 100 schedules by swapping adjacent ports
-def generate_schedules(trades, num_schedules=100):
+def generate_schedules_swapping(trades, num_schedules=100):
     schedules = generate_init_schedules(trades)
     while len(schedules) < num_schedules:
         schedule = list(random.choice(schedules))  # Pick a random schedule
@@ -84,6 +97,22 @@ def generate_schedules(trades, num_schedules=100):
         schedule[i], schedule[i + 1] = schedule[i + 1], schedule[i]  # Swap them
         schedule = ''.join(schedule)  # Convert back to string
         if schedule not in schedules and is_feasible(schedule, trades):  # Check if the new schedule is unique and feasible
+            schedules.append(schedule)
+    return schedules
+
+# Generate feasible schedules by sampling random times within time windows
+def generate_schedules_sampling(trades, num_schedules=100):
+    schedules = []
+    while len(schedules) < num_schedules:
+        times = {}
+        for port, (ep, lp, ed, ld) in trades.items():
+            rp = random.uniform(ep, lp) # Random pickup time
+            rd = random.uniform(max(ed, rp), ld) # Random dropoff time after pickup
+            times[port.upper()] = rp
+            times[port.lower()] = rd
+        ordered_ports = sorted(times.items(), key=lambda x: x[1])
+        schedule = ''.join([p for p, _ in ordered_ports])
+        if schedule not in schedules: # Check if the new schedule is unique, not feasibility, as we sample within time windows
             schedules.append(schedule)
     return schedules
 
@@ -96,19 +125,26 @@ if __name__ == "__main__":
     #     'I': (6,7,20,21),
     #     'N': (5,10,15,20)
     # }
-    trades = {
-        'A': (1,2,9,10),
-        'C': (None,4,6,7),
-        'E': (2,5,10,None),
-        'G': (1,8,None,16),
-        'I': (6,None,20,21),
-        'N': (None,10,None,20)
-    }
+    # trades = {
+    #     'A': (1,2,9,10),
+    #     'C': (None,4,6,7),
+    #     'E': (2,5,10,None),
+    #     'G': (1,8,None,16),
+    #     'I': (6,None,20,21),
+    #     'N': (None,10,None,20)
+    # }
+    trades = generate_trades(6)
+    print(trades)
+
+    # Fix trades
     fixed_trades = fix_trades(trades)
+    print(fixed_trades)
+
+    # Plot the schedule graph
+    plot_schedule(fixed_trades)
 
     # Generate schedules
-    schedules = generate_schedules(fixed_trades)
-    schedules.sort()
-    print(schedules)
-
-    plot_schedule(fixed_trades)
+    schedules_swapped = generate_schedules_swapping(fixed_trades)
+    print(schedules_swapped)
+    schedules_sampled = generate_schedules_sampling(fixed_trades)
+    print(schedules_sampled)
