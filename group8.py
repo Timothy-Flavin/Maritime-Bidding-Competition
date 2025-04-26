@@ -62,7 +62,6 @@ class Company8(TradingCompany):
                     if schedule.verify_schedule():
                         schedules[vessel] = schedule  # commit
                         scheduled_trades.append(trade)
-                        costs[trade] = 0  # We can improve this later
                         assigned = True
                         break  # done assigning this trade
                 except Exception as e:
@@ -72,5 +71,45 @@ class Company8(TradingCompany):
             if not assigned:
                 # If no ship could take the trade, we just skip it
                 pass
+        
+        self.calculate_cost(costs, trades)  # calculate costs for the trades
 
         return ScheduleProposal(schedules, scheduled_trades, costs)
+
+    def calculate_cost(self, costs, trades):
+        """
+        Calculate the cost of the trade.
+
+        :param costs: The costs of the trade.
+        :type costs: Dict[Trade, float]
+        :param trades: The trades.
+        :type trades: List[Trade]
+        """
+        # inside propose_schedules
+        for trade in trades:
+            min_cost = float('inf')
+
+            for ship in self.ships.values():
+                # (1) Get the ship's current location
+                ship_x, ship_y = ship.location
+                
+                # (2) Get the trade's pickup location
+                pickup_x, pickup_y = trade.pickup_pos
+                
+                # (3) Get the trade's delivery location
+                delivery_x, delivery_y = trade.delivery_pos
+                
+                # (4) Calculate distance to pickup
+                dist_to_pickup = ((ship_x - pickup_x)**2 + (ship_y - pickup_y)**2) ** 0.5
+                
+                # (5) Calculate distance pickup to delivery
+                dist_delivery = ((pickup_x - delivery_x)**2 + (pickup_y - delivery_y)**2) ** 0.5
+                
+                # (6) Total cost = distance to pickup + delivery distance
+                total_cost = dist_to_pickup + dist_delivery
+                
+                if total_cost < min_cost:
+                    min_cost = total_cost
+            
+            # (7) Set the bid cost for this trade as the minimal total cost among all ships
+            costs[trade] = min_cost
