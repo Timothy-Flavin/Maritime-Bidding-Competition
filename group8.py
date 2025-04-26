@@ -1,5 +1,6 @@
 from mable.cargo_bidding import TradingCompany
 from mable.transport_operation import Bid
+from mable.transport_operation import ScheduleProposal
 
 from loguru import logger
 
@@ -43,3 +44,33 @@ class Company8(TradingCompany):
         trades = [one_contract.trade for one_contract in contracts]
         scheduling_proposal = self.propose_schedules(trades)
         self.apply_schedules(scheduling_proposal.schedules)
+
+    def propose_schedules(self, trades):
+        schedules = {}  # vessel -> schedule
+        scheduled_trades = []
+        costs = {}
+
+        for vessel in self.fleet:  # for each ship
+            schedules[vessel] = vessel.schedule.copy()  # start from current schedule
+
+        for trade in trades:
+            assigned = False
+            for vessel in self.fleet:
+                schedule = schedules[vessel].copy()  # copy so we can test safely
+                try:
+                    schedule.add_transportation(trade)  # try to just append
+                    if schedule.verify_schedule():
+                        schedules[vessel] = schedule  # commit
+                        scheduled_trades.append(trade)
+                        costs[trade] = 0  # We can improve this later
+                        assigned = True
+                        break  # done assigning this trade
+                except Exception as e:
+                    # Sometimes add_transportation can throw errors
+                    pass
+
+            if not assigned:
+                # If no ship could take the trade, we just skip it
+                pass
+
+        return ScheduleProposal(schedules, scheduled_trades, costs)
