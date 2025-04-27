@@ -1,3 +1,25 @@
+# Simulated Annealing logic lives here
+# (Tim's work)
+
+class SAScheduler:
+    def __init__(self, vessels, trades):
+        self.vessels = vessels
+        self.trades = trades
+        # More initialization later
+
+    def generate_initial_solution(self):
+        pass  # To implement (maybe call a trade_utils function)
+
+    def mutate_solution(self, solution):
+        pass
+
+    def evaluate_fitness(self, solution):
+        pass
+
+    def run(self):
+        pass
+
+# TODO - incorporate Tim's simulated annealing code in the above class:
 from mable.cargo_bidding import TradingCompany
 from mable.examples import environment, fleets
 from mable.cargo_bidding import Bid
@@ -41,11 +63,8 @@ class Simulated_Anealing:
             if temperature > 0.1:  # Stop if temperature is too low
                 temperature *= alpha  # Decrease temperature
 
-            new_ports, new_cutoffs = self.mutate_genome(
-                ports, cutoffs, boatwise_ports, unused_ports
-            )
-            new_boatwise_ports, new_unused_ports = self.get_boatwise_ports(
-                new_ports, new_cutoffs, boats
+            new_ports, new_cutoffs, new_boatwise_ports, new_unused_ports = (
+                self.mutate_genome(ports, cutoffs, boatwise_ports, unused_ports)
             )
 
             new_trades_fulfilled, new_travel_cost, new_schedules = (
@@ -71,8 +90,19 @@ class Simulated_Anealing:
                 schedules = new_schedules
                 initial_fitness = new_fitness
 
-    def get_boatwise_ports(self, ports, cutoffs, boats):
-        print("  Getting boatwise ports...")
+    def make_new_random_genome(self, trades, boats: list[Vessel]):
+        print("  Making new random genome...")
+        ports = self.get_active_ports(trades)
+
+        print("    Active ports: ", ports)
+        cutoffs = []
+        for cutoff in range(len(boats)):
+            cutoffs.append(random.randint(0, len(ports) - 1))
+        cutoffs.sort()  # sort the cutoffs so that we can use them to partition the genome
+        # randomize the order of the ports
+        random.shuffle(ports)  # randomize the order of the ports
+        # Now we have a random genome, we need to partition the ports into the boats
+
         print(f"    Cutoffs: {cutoffs}")
         print(f"    Ports after shuffle: {ports}")
 
@@ -105,23 +135,6 @@ class Simulated_Anealing:
 
         print(f"    Boatwise ports before partitioning: {boatwise_ports}")
         print(f"    Unused ports: {unused_ports}")
-
-        return boatwise_ports, unused_ports
-
-    def make_new_random_genome(self, trades, boats: list[Vessel]):
-        print("  Making new random genome...")
-        ports = self.get_active_ports(trades)
-
-        print("    Active ports: ", ports)
-        cutoffs = []
-        for cutoff in range(len(boats)):
-            cutoffs.append(random.randint(0, len(ports) - 1))
-        cutoffs.sort()  # sort the cutoffs so that we can use them to partition the genome
-        # randomize the order of the ports
-        random.shuffle(ports)  # randomize the order of the ports
-        # Now we have a random genome, we need to partition the ports into the boats
-        boatwise_ports, unused_ports = self.get_boatwise_ports(ports, cutoffs, boats)
-
         return ports, cutoffs, boatwise_ports, unused_ports
 
     def get_active_ports(self, trades):
@@ -216,26 +229,12 @@ class Simulated_Anealing:
         print(f"  schedule: {sched_copy}")
         print(f"  insertion points: {sched_copy.get_insertion_points()}")
 
-        # TODO: figure out how to implement trade insertion into the boat schedule copy
         return True
 
     def fitness(self, trades_fulfilled, travel_cost, schedules, boats, paths):
         return (
             len(trades_fulfilled) / travel_cost * 1000
         )  # TODO: Implement fitness function
-
-    def mutate_genome(self, ports, cutoffs):
-        print("  Mutating genome...")
-        # Randomly swap two ports in the genome
-        port1 = random.randint(0, len(ports) - 1)
-        port2 = random.randint(0, len(ports) - 1)
-        ports[port1], ports[port2] = ports[port2], ports[port1]
-
-        ci = random.randint(0, len(cutoffs) - 1)
-        cutoffs[ci] = random.randint(0, len(ports) - 1)
-        cutoffs.sort()  # sort the cutoffs so that we can use them to partition the genome
-
-        return ports, cutoffs
 
 
 class Companyn(TradingCompany):
