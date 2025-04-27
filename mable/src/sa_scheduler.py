@@ -3,6 +3,8 @@
 from mable.transport_operation import Vessel, Trade
 from mable.cargo_bidding import TradingCompany
 from mable.extensions.fuel_emissions import VesselWithEngine
+import random
+import copy
 
 
 class SAScheduler:
@@ -73,37 +75,85 @@ class SAScheduler:
                 },
             )  # Add trade to the vessel's scheduled trades
 
-    def run(
-        self, trades: list[Trade], paths: dict, fleet: list[VesselWithEngine] = None
-    ):
-        """
-        The Genome being used here a list of trades and a list of cutoffs for each boat.
-        The cutoffs indicate which subset of trades go into each boat's schedule.
-
-        Genome example:
-          cutoffs = [2, 5, 8] # 3 boats, first boat gets trades[0:2], second boat gets trades[2:5], third boat gets trades[5:8]
-          G [{'trade_index': 0,                                 # the trade's index in trades list
-              'trade': trades[0],                               # the trade object itself
-              'fixed_pickup_window': (start,end),               # pickup window after replacing NA
-              'fixed_dropoff_window': (start,end),              # dropoff window after replacing NA
-              current_pickup_allele: rand()*(end-start)+start,  # Random real number between start and end of pickup window
-              current_dropoff_allele: rand()*(end-start)+start, # Random real number between start and end of dropoff window
-              },
-              {'trade_index': 1, ...}, ...] # for each trade in the genome
-        """
+    def run(self, trades, paths, fleet=None):
         if fleet is not None:
             self.fleet = fleet
 
-        for ship in self.fleet:
-            initial_schedule = (
-                ship.schedule.copy()
-            )  # Copy the initial schedule of the ship
-            print(f"Initial schedule for {ship.name}: {initial_schedule}")
-        exit()
-        # initialize genome
-        trade_genome, cutoffs, iitial_schedule = self.generate_initial_solution(trades)
+        # 1. Generate an initial solution (genome + cutoffs)
+        initial_genome, initial_cutoffs = self.generate_initial_solution(trades)
 
-        pass
+        current_genome = initial_genome
+        current_cutoffs = initial_cutoffs
+        current_fitness = self.calculate_fitness(current_genome, current_cutoffs)
+
+        best_genome = current_genome
+        best_cutoffs = current_cutoffs
+        best_fitness = current_fitness
+
+        temperature = self.starting_temperature
+        iteration = 0
+
+        # 2. Simulated Annealing Loop
+        while temperature > self.final_temperature:
+            # Mutation step
+            mutated_genome, mutated_cutoffs = self.mutate_solution(current_genome, current_cutoffs)
+
+            # Fitness of mutated solution
+            mutated_fitness = self.calculate_fitness(mutated_genome, mutated_cutoffs)
+
+            # Decide if we accept the new solution
+            if self.accept_solution(current_fitness, mutated_fitness, temperature):
+                current_genome = mutated_genome
+                current_cutoffs = mutated_cutoffs
+                current_fitness = mutated_fitness
+
+                if mutated_fitness > best_fitness:
+                    best_genome = mutated_genome
+                    best_cutoffs = mutated_cutoffs
+                    best_fitness = mutated_fitness
+
+            # Decrease temperature
+            temperature *= self.cooling_rate
+            iteration += 1
+
+        # 3. Return best found solution
+        return best_genome, best_cutoffs
+    
+    def mutate_solution(self, genome, cutoffs):
+        """
+        Apply a small mutation to the genome and/or cutoffs.
+        Returns a new mutated (genome, cutoffs).
+        """
+        # Deepcopy to avoid modifying in-place
+        new_genome = copy.deepcopy(genome)
+        new_cutoffs = copy.deepcopy(cutoffs)
+
+        # Mutation options: swap two trades OR adjust cutoffs slightly
+        mutation_type = random.choice(["swap_trades", "adjust_cutoffs", "perturb_times"])
+
+        if mutation_type == "swap_trades":
+            if len(new_genome) >= 2:
+                i, j = random.sample(range(len(new_genome)), 2)
+                new_genome[i], new_genome[j] = new_genome[j], new_genome[i]
+
+        elif mutation_type == "adjust_cutoffs":
+            if len(new_cutoffs) > 0:
+                idx = random.randint(0, len(new_cutoffs) - 1)
+                adjustment = random.choice([-1, 1])
+                new_cutoffs[idx] = max(1, new_cutoffs[idx] + adjustment)
+                new_cutoffs = sorted(new_cutoffs)
+
+        elif mutation_type == "perturb_times":
+            if len(new_genome) > 0:
+                idx = random.randint(0, len(new_genome) - 1)
+                trade = new_genome[idx]
+                # If you store real-numbered timestamps in trade, you could slightly nudge them
+                if hasattr(trade, "pickup_time"):
+                    trade.pickup_time += random.uniform(-1.0, 1.0)
+                if hasattr(trade, "dropoff_time"):
+                    trade.dropoff_time += random.uniform(-1.0, 1.0)
+
+        return new_genome, new_cutoffs
 
 
 if False:
