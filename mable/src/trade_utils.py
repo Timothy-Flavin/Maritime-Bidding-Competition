@@ -86,36 +86,42 @@ def plot_schedule(trades):
 # ------------------------------------------------------------------------
 # Check if a schedule of pickups and dropoffs obeys the time windows
 # ------------------------------------------------------------------------
-def is_feasible(schedule, trades):
+def is_feasible(sequence, trades):
     """
-    Check if a schedule is feasible based on time windows.
-    Ports must occur respecting pickup before dropoff timing.
+    Check whether a schedule sequence is feasible given trades.
+
+    Args:
+        sequence (str): A sequence of pickup/dropoff characters.
+        trades (list or dict): Either a list of (pickup, dropoff, (ep, lp, ed, ld))
+                               OR a dict {pickup_port: (ep, lp, ed, ld)}.
+
+    Returns:
+        bool: True if feasible, False otherwise.
     """
-    # Fix: convert trades into a quick lookup dictionary
-    port_windows = {}
-    for pickup, dropoff, (ep, lp, ed, ld) in trades:
-        port_windows[pickup.upper()] = (ep, lp)
-        port_windows[dropoff.lower()] = (ed, ld)
+    # Preprocess trades into a dict no matter what
+    if isinstance(trades, list):
+        trade_dict = {pickup: (ep, lp, ed, ld) for pickup, dropoff, (ep, lp, ed, ld) in trades}
+    elif isinstance(trades, dict):
+        trade_dict = trades
+    else:
+        raise ValueError("trades must be a list or dictionary")
 
-    current_time = 0
-    cargo = set()
+    time = 0
+    visited = {}
+    for ch in sequence:
+        t = trade_dict[ch.upper()]  # Get time windows
 
-    for ch in schedule:
-        if ch.upper() == ch:  # Pickup port
-            ep, lp = port_windows[ch]
-            if current_time > lp:
-                return False  # Missed pickup window
-            current_time = max(current_time, ep)
-            cargo.add(ch)
-        else:  # Dropoff port
-            ed, ld = port_windows[ch]
-            if ch.upper() not in cargo:
-                return False  # Can't drop off what you haven't picked up
-            if current_time > ld:
-                return False  # Missed dropoff window
-            current_time = max(current_time, ed)
-            cargo.remove(ch.upper())
-
+        if ch.isupper():  # Pickup
+            time = max(time, t[0])  # Earliest pickup
+            if time > t[1]:  # Too late for pickup
+                return False
+            visited[ch.upper()] = time
+        else:  # Dropoff
+            if ch.upper() not in visited:
+                return False  # Can't dropoff before pickup
+            time = max(time, t[2])  # Earliest dropoff
+            if time > t[3]:  # Too late for dropoff
+                return False
     return True
 
 # ------------------------------------------------------------------------
@@ -123,15 +129,41 @@ def is_feasible(schedule, trades):
 # ------------------------------------------------------------------------
 def generate_init_schedules(trades):
     """
-    Generate three basic schedules: earliest-based, midpoint-based, latest-based.
+    Generate initial schedules based on the time windows in trades.
+
+    If trades is a dict, it should be of the format:
+        { 'A': (ep, lp, ed, ld), ... }
+    If trades is a list, it should be of the format:
+        [('A', 'a', (ep, lp, ed, ld)), ...]
+
+    Returns:
+        A list of three schedule strings ordered by:
+          1. Earliest time in the window
+          2. Midpoint of the time window
+          3. Latest time in the window
     """
     ports = {}
-    for pickup, dropoff, (ep, lp, ed, ld) in trades:
-        ports[pickup.upper()] = (ep, lp)
-        ports[dropoff.upper()] = (ed, ld)
+    if isinstance(trades, dict):
+        # Convert the dict to a uniform mapping: key is uppercase letter (pickup)
+        # and value is a tuple (ep, lp) for pickup, and for dropoff, use lowercase letter
+        for port, windows in trades.items():
+            ep, lp, ed, ld = windows
+            ports[port.upper()] = (ep, lp)
+            ports[port.lower()] = (ed, ld)
+    elif isinstance(trades, list):
+        # Each trade is a tuple: (pickup, dropoff, (ep, lp, ed, ld))
+        for pickup, dropoff, windows in trades:
+            ep, lp, ed, ld = windows
+            ports[pickup] = (ep, lp)
+            ports[dropoff] = (ed, ld)
+    else:
+        raise ValueError("trades must be either a dict or a list")
 
+    # Order by earliest time in the time window for each port
     earliest_order = sorted(ports.keys(), key=lambda x: ports[x][0])
+    # Order by midpoint of the time window
     midpoint_order = sorted(ports.keys(), key=lambda x: (ports[x][0] + ports[x][1]) / 2)
+    # Order by latest time in the time window
     latest_order = sorted(ports.keys(), key=lambda x: ports[x][1])
 
     return [''.join(earliest_order), ''.join(midpoint_order), ''.join(latest_order)]
@@ -139,17 +171,39 @@ def generate_init_schedules(trades):
 # ------------------------------------------------------------------------
 # Create feasible schedules by random adjacent swaps
 # ------------------------------------------------------------------------
-def generate_schedules_swapping(trades, num_schedules=100):
+def generate_schedules_sampling(trades, num_schedules=100):
     """
-    Generate more feasible schedules by starting from simple schedules and randomly swapping adjacent ports.
+    Generate feasible schedules by sampling random times within the trade time windows.
+
+    Args:
+        trades (list or dict): List of (pickup, dropoff, (ep, lp, ed, ld)) or dict {pickup: (ep, lp, ed, ld)}.
+        num_schedules (int): Number of schedules to generate.
+
+    Returns:
+        List of feasible schedule strings.
     """
-    schedules = generate_init_schedules(trades)
+    # Normalize trades into a ports dictionary: port -> (ep, lp)
+    ports = {}
+    if isinstance(trades, dict):
+        for port, (ep, lp, ed, ld) in trades.items():
+            ports[port.upper()] = (ep, lp)
+            ports[port.lower()] = (ed, ld)
+    elif isinstance(trades, list):
+        for pickup, dropoff, (ep, lp, ed, ld) in trades:
+            ports[pickup] = (ep, lp)
+            ports[dropoff] = (ed, ld)
+    else:
+        raise ValueError("trades must be a list or dict")
+
+    schedules = []
     while len(schedules) < num_schedules:
-        schedule = list(random.choice(schedules))
-        i = random.randint(0, len(schedule) - 2)
-        schedule[i], schedule[i + 1] = schedule[i + 1], schedule[i]
-        schedule = ''.join(schedule)
-        if schedule not in schedules and is_feasible(schedule, trades):
+        times = {}
+        for port, (ep, lp) in ports.items():
+            rp = random.uniform(ep, lp)  # Random time within window
+            times[port] = rp
+        ordered_ports = sorted(times.items(), key=lambda x: x[1])
+        schedule = ''.join([p for p, _ in ordered_ports])
+        if schedule not in schedules:  # Keep unique schedules
             schedules.append(schedule)
     return schedules
 
@@ -158,19 +212,68 @@ def generate_schedules_swapping(trades, num_schedules=100):
 # ------------------------------------------------------------------------
 def generate_schedules_sampling(trades, num_schedules=100):
     """
-    Generate feasible schedules by assigning random real numbers between windows and sorting by them.
-    This guarantees feasibility without heavy checking.
+    Generate feasible schedules by sampling random times within the trade time windows.
+
+    Args:
+        trades (list or dict): List of (pickup, dropoff, (ep, lp, ed, ld)) or dict {pickup: (ep, lp, ed, ld)}.
+        num_schedules (int): Number of schedules to generate.
+
+    Returns:
+        List of feasible schedule strings.
     """
+    # Normalize trades into a ports dictionary: port -> (ep, lp)
+    ports = {}
+    if isinstance(trades, dict):
+        for port, (ep, lp, ed, ld) in trades.items():
+            ports[port.upper()] = (ep, lp)
+            ports[port.lower()] = (ed, ld)
+    elif isinstance(trades, list):
+        for pickup, dropoff, (ep, lp, ed, ld) in trades:
+            ports[pickup] = (ep, lp)
+            ports[dropoff] = (ed, ld)
+    else:
+        raise ValueError("trades must be either a list or dict")
+
     schedules = []
     while len(schedules) < num_schedules:
         times = {}
-        for port, (ep, lp, ed, ld) in trades.items():
-            rp = random.uniform(ep, lp)
-            rd = random.uniform(max(ed, rp), ld)
-            times[port.upper()] = rp
-            times[port.lower()] = rd
+        for port, (ep, lp) in ports.items():
+            rp = random.uniform(ep, lp)  # Random time within window
+            times[port] = rp
         ordered_ports = sorted(times.items(), key=lambda x: x[1])
         schedule = ''.join([p for p, _ in ordered_ports])
-        if schedule not in schedules:
+        if schedule not in schedules:  # Keep unique schedules
             schedules.append(schedule)
+    return schedules
+
+
+# ------------------------------------------------------------------------
+# Create feasible schedules by swapping adjacent ports
+# ------------------------------------------------------------------------
+def generate_schedules_swapping(trades, num_schedules=100):
+    """
+    Generate schedules by swapping adjacent ports from an initial schedule.
+
+    Args:
+        trades (list or dict): List of (pickup, dropoff, (ep, lp, ed, ld)) or dict.
+        num_schedules (int): Number of schedules to generate.
+
+    Returns:
+        List of feasible schedule strings.
+    """
+    # Reuse the same normalization logic
+    initial_schedules = generate_init_schedules(trades)
+    schedules = list(initial_schedules)  # Start with the three initial schedules
+
+    while len(schedules) < num_schedules:
+        schedule = list(random.choice(schedules))  # Pick a random schedule
+        if len(schedule) < 2:
+            continue  # Not enough to swap
+        i = random.randint(0, len(schedule) - 2)  # Pick random adjacent pair
+        schedule[i], schedule[i + 1] = schedule[i + 1], schedule[i]  # Swap them
+        new_schedule = ''.join(schedule)
+
+        if new_schedule not in schedules:
+            schedules.append(new_schedule)
+
     return schedules

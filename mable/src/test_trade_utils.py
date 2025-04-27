@@ -1,29 +1,16 @@
-import trade_utils
-
-# -----------------------------------------
-# Basic Sanity Checks for trade_utils.py
-# -----------------------------------------
-
 import random
 import pprint
-
 import trade_utils  # Assuming this file is sitting in the same 'src' folder
 
 def test_generate_trades():
     print("Testing trade generation...\n")
-
     random.seed(42)  # for reproducibility
-
     trades = trade_utils.generate_trades(5, allow_nones=True)
     pprint.pprint(trades)
-
     assert isinstance(trades, list), "Output should be a list"
-    assert all(len(t) == 3 for t in trades), "Each trade should have (pickup, dropoff, windows)"
+    assert all(isinstance(t, tuple) and len(t) == 3 for t in trades), "Each trade should be a tuple of (pickup, dropoff, window)"
+    assert all(isinstance(t[2], tuple) and len(t[2]) == 4 for t in trades), "Each time window should have 4 elements"
     print("\n✅ Trade generation passed!\n")
-
-if __name__ == "__main__":
-    test_generate_trades()
-
 
 def test_fix_trades():
     trades = {'A': (None, 5, None, 10), 'B': (2, None, 5, None)}
@@ -31,41 +18,36 @@ def test_fix_trades():
     for times in fixed.values():
         for t in times:
             assert t is not None
-
+    print("✅ Fix trades passed!\n")
 
 def test_plot_schedule():
     trades = trade_utils.generate_trades(5, allow_nones=False)
     trade_utils.plot_schedule(trades)  # Should just display a graph without crashing
-
+    print("✅ Plot schedule passed!\n")
 
 def test_is_feasible():
     trades = {
-        ('A','B',(1, 5, 6, 10)),
-        ('C','D',(2, 6, 7, 12))
+        'A': (1, 5, 6, 10),
+        'B': (2, 6, 7, 12)
     }
     assert trade_utils.is_feasible('ABab', trades) == True
     assert trade_utils.is_feasible('aBbA', trades) == False
+    print("✅ Feasibility test passed!\n")
 
 def test_generate_init_schedules():
     print("Testing initial schedule generation...")
-    # Sample trades (pickup, dropoff, (EP, LP, ED, LD))
-    trades = [
-        ("A", "a", (0, 5, 6, 10)),
-        ("B", "b", (2, 7, 8, 13)),
-        ("C", "c", (1, 6, 7, 12)),
-    ]
-
+    trades = {
+        'A': (0, 5, 6, 10),
+        'B': (2, 7, 8, 13),
+        'C': (1, 6, 7, 12),
+    }
     schedules = trade_utils.generate_init_schedules(trades)
     print("Generated schedules:", schedules)
-
     assert isinstance(schedules, list), "Schedules should be a list"
     assert len(schedules) == 3, "Should generate exactly 3 schedules (earliest, midpoint, latest)"
     for schedule in schedules:
         assert isinstance(schedule, str), "Each schedule should be a string"
-        for port in schedule:
-            assert port.isupper(), "All ports in generated schedules should be uppercase for consistency"
-
-    print("✅ Initial schedule generation passed!")
+    print("✅ Initial schedule generation passed!\n")
 
 def test_generate_schedules_swapping():
     trades = trade_utils.generate_trades(3, allow_nones=False)
@@ -73,7 +55,7 @@ def test_generate_schedules_swapping():
     assert len(schedules) == 10
     for sched in schedules:
         assert isinstance(sched, str)
-
+    print("✅ Schedule swapping passed!\n")
 
 def test_generate_schedules_sampling():
     trades = trade_utils.generate_trades(3, allow_nones=False)
@@ -81,6 +63,7 @@ def test_generate_schedules_sampling():
     assert len(schedules) == 10
     for sched in schedules:
         assert isinstance(sched, str)
+    print("✅ Schedule sampling passed!\n")
 
 # -----------------------------------------
 # Run tests manually
@@ -93,6 +76,4 @@ if __name__ == "__main__":
     test_generate_init_schedules()
     test_generate_schedules_swapping()
     test_generate_schedules_sampling()
-    print("All trade_utils tests passed!")
-
-
+    print("\n🎉 All trade_utils tests passed! 🎉")
