@@ -23,7 +23,7 @@ class SAScheduler:
         pass
 
     def deterministic_schedule_from_genome(
-        self, genome, cutoffs: list[int], fleet: list[VesselWithEngine]
+        self, genome, cutoffs: list[int], fleet: list[VesselWithEngine], debug=False
     ):
         """
         Converts a genome into a legal and deterministic schedule for each vessel.
@@ -42,38 +42,50 @@ class SAScheduler:
             while allele >= cutoffs[vessel_index]:
                 vessel_index += 1
 
+            schedule_copy = schedules[vessel_index].copy()
             # Go through events in this vessel's schedule and find the insertion points
             # for the current trade in the genome
-            insertion_point = 0
+            insertion_pickup = 0
             while (
                 simply_scheduled_trades[vessel_index]
-                and simply_scheduled_trades[vessel_index][insertion_point]["time"]
+                and simply_scheduled_trades[vessel_index][insertion_pickup]["time"]
                 < genome[allele]["current_pickup_allele"]
             ):
-                insertion_point += 1
-
-            simply_scheduled_trades[vessel_index].insert(
-                insertion_point,
-                {
-                    "gene": genome[allele],
-                    "pickup": True,
-                    "time": genome["current_pickup_allele"],
-                },
-            )  # Add trade to the vessel's scheduled trades
-
+                insertion_pickup += 1
+            insertion_dropoff = insertion_pickup
             while (
-                simply_scheduled_trades[vessel_index][insertion_point]["time"]
+                simply_scheduled_trades[vessel_index]
+                and simply_scheduled_trades[vessel_index][insertion_dropoff]["time"]
                 < genome[allele]["current_dropoff_allele"]
             ):
-                insertion_point += 1
-            simply_scheduled_trades[vessel_index].insert(
-                insertion_point,
-                {
-                    "gene": genome[allele],
-                    "pickup": False,
-                    "time": genome["current_dropoff_allele"],
-                },
-            )  # Add trade to the vessel's scheduled trades
+                insertion_dropoff += 1
+
+            schedule_copy.add_transportation(
+                genome[allele].trade,
+                insertion_pickup,
+                insertion_dropoff,
+            )
+
+            if schedule_copy.verify_schedule():
+                schedules[vessel_index] = schedule_copy
+
+                # Add the trade to the schedule and our simplified schedule list for sanity
+                simply_scheduled_trades[vessel_index].insert(
+                    insertion_dropoff,
+                    {
+                        "gene": genome[allele],
+                        "pickup": False,
+                        "time": genome["current_dropoff_allele"],
+                    },
+                )  # Add trade to the vessel's scheduled trades
+                simply_scheduled_trades[vessel_index].insert(
+                    insertion_pickup,
+                    {
+                        "gene": genome[allele],
+                        "pickup": True,
+                        "time": genome["current_pickup_allele"],
+                    },
+                )  # Add trade to the vessel's scheduled trades
 
     def run(self, trades, paths, fleet=None):
         if fleet is not None:
@@ -96,7 +108,9 @@ class SAScheduler:
         # 2. Simulated Annealing Loop
         while temperature > self.final_temperature:
             # Mutation step
-            mutated_genome, mutated_cutoffs = self.mutate_solution(current_genome, current_cutoffs)
+            mutated_genome, mutated_cutoffs = self.mutate_solution(
+                current_genome, current_cutoffs
+            )
 
             # Fitness of mutated solution
             mutated_fitness = self.calculate_fitness(mutated_genome, mutated_cutoffs)
@@ -118,7 +132,7 @@ class SAScheduler:
 
         # 3. Return best found solution
         return best_genome, best_cutoffs
-    
+
     def mutate_solution(self, genome, cutoffs):
         """
         Apply a small mutation to the genome and/or cutoffs.
@@ -129,7 +143,9 @@ class SAScheduler:
         new_cutoffs = copy.deepcopy(cutoffs)
 
         # Mutation options: swap two trades OR adjust cutoffs slightly
-        mutation_type = random.choice(["swap_trades", "adjust_cutoffs", "perturb_times"])
+        mutation_type = random.choice(
+            ["swap_trades", "adjust_cutoffs", "perturb_times"]
+        )
 
         if mutation_type == "swap_trades":
             if len(new_genome) >= 2:
