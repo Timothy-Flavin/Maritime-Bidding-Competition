@@ -9,10 +9,19 @@ import copy
 
 
 class SAScheduler:
-    def __init__(self, company: TradingCompany):
+    def __init__(
+        self,
+        company: TradingCompany,
+        initial_temperature=1000,
+        final_temperature=0.1,
+        cooling_rate=0.98,
+    ):
         self.company = company
         self.fleet = company.fleet
         # More initialization later
+        self.starting_temperature = initial_temperature  # Initial temperature for SA
+        self.final_temperature = final_temperature  # Final temperature for SA
+        self.cooling_rate = cooling_rate  # Cooling rate for SA
 
     def generate_initial_genome(self, trades, bid_prices, debug=False):
         genome = []  # List of trades to be scheduled
@@ -172,7 +181,7 @@ class SAScheduler:
                 laden -= 1
             travel_distance = self.company.headquarters.get_network_distance(
                 start_port, dest_port
-            )
+            )  # TODO: deal with this being inf sometimes
             travel_time = vessel.get_travel_time(travel_distance)
             if laden > 0:
                 travel_costs += vessel.get_laden_consumption(travel_time, vessel.speed)
@@ -196,23 +205,43 @@ class SAScheduler:
             while g >= cutoffs[cutoff_index]:
                 cutoff_index += 1
             if gene["active"]:
-                # If the trade is active, we add its price to the fitness
                 expected_income += gene["prices"][cutoff_index]
 
         return expected_income - travel_cost  # Fitness is income - cost
 
-    def run(self, trades, paths, bid_prices, fleet=None):
+    def run(self, trades, bid_prices, fleet=None, debug=False):
         if fleet is not None:
             self.fleet = fleet
 
+        if debug:
+            print(f"Running Simulated Annealing with {len(trades)} trades.")
+            print(f"Bid prices: {bid_prices}")
+            print(f"Generating initial genome and cutoffs...")
         # 1. Generate an initial solution (genome + cutoffs)
         initial_genome, initial_cutoffs = self.generate_initial_genome(
-            trades, debug=True, bid_prices=bid_prices
+            trades, bid_prices=bid_prices, debug=debug
         )
+        if debug:
+            print(f"Initial genome: {initial_genome}")
+            print(f"Initial cutoffs: {initial_cutoffs}")
+            print(f"Getting schedules from genome...")
 
+        schedules = self.deterministic_schedule_from_genome(
+            initial_genome, initial_cutoffs, self.fleet, debug=debug
+        )
         current_genome = initial_genome
         current_cutoffs = initial_cutoffs
-        current_fitness = self.calculate_fitness(current_genome, current_cutoffs)
+
+        if debug:
+            print(f"Evaluating fitness of initial solution...")
+        current_fitness = self.evaluate_fitness(
+            schedules=schedules,
+            genome=current_genome,
+            cutoffs=current_cutoffs,
+            debug=debug,  # Pass debug flag to evaluate_fitness
+        )
+        if debug:
+            print(f"Initial fitness: {current_fitness}")
 
         best_genome = current_genome
         best_cutoffs = current_cutoffs
@@ -220,17 +249,23 @@ class SAScheduler:
 
         temperature = self.starting_temperature
         iteration = 0
-
+        input()
         # 2. Simulated Annealing Loop
         while temperature > self.final_temperature:
             # Mutation step
             mutated_genome, mutated_cutoffs = self.mutate_solution(
                 current_genome, current_cutoffs
             )
-
+            mutated_schedules = self.deterministic_schedule_from_genome(
+                mutated_genome, mutated_cutoffs, self.fleet, debug=debug
+            )
             # Fitness of mutated solution
-            mutated_fitness = self.calculate_fitness(mutated_genome, mutated_cutoffs)
-
+            mutated_fitness = self.evaluate_fitness(
+                schedules=mutated_schedules,
+                genome=mutated_genome,
+                cutoffs=mutated_cutoffs,
+                debug=debug,
+            )
             # Decide if we accept the new solution
             if self.accept_solution(current_fitness, mutated_fitness, temperature):
                 current_genome = mutated_genome

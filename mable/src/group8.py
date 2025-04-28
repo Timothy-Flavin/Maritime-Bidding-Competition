@@ -10,26 +10,23 @@ class Group8Company(TradingCompany):
         super().__init__(fleet, name)
         self._current_scheduling_proposal = None
         self._won_trades = []
-        with open("precomputed_routes.pickle", "rb") as f:
-            self.pr = pickle.load(f)
         self.simulated_annealing = SAScheduler(self)  # Initialize simulated annealing
 
-    def inform(self, pr, trades):
+    def inform(self, trades):
         """
         Called before each auction to inform the company of available trades.
         Runs Simulated Annealing to optimize our bids.
         """
-        self.pr = pr
         self.trades = trades
 
         bid_prices = []
         for trade in trades:
             bid_prices.append([])
             for vessel in self.fleet:
-                bid_prices[-1].append(self.estimate_bid_price(trade, pr, vessel))
+                bid_prices[-1].append(self.estimate_bid_price(trade, vessel))
         # Run Simulated Annealing to optimize schedule
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
-            trades, pr=self.pr, fleet=self.fleet, bid_prices=bid_prices
+            trades, fleet=self.fleet, bid_prices=bid_prices
         )
 
         # Build a deterministic schedule from the optimized genome
@@ -43,7 +40,7 @@ class Group8Company(TradingCompany):
         bids = []
         for trade in self._current_scheduling_proposal.scheduled_trades:
             assigned_vessel = self.pick_vessel_for_trade(trade)  # helper to get vessel
-            bid_amount = self.estimate_bid_price(trade, self.pr, assigned_vessel)
+            bid_amount = self.estimate_bid_price(trade, assigned_vessel)
             bids.append(Bid(amount=bid_amount, trade=trade))
 
         return bids
@@ -75,7 +72,7 @@ class Group8Company(TradingCompany):
 
         # Rebuild schedule from won trades only
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
-            won_trades, self.pr, self.fleet
+            won_trades, self.fleet
         )
 
         final_schedule_proposal = (
@@ -156,7 +153,7 @@ class Group8Company(TradingCompany):
 
         return proposal
 
-    def estimate_bid_price(trade, pr, vessel, profit_margin=0.10):
+    def estimate_bid_price(self, trade, vessel, profit_margin=0.10):
         """
         Estimate the cost for a vessel to complete a trade, and return a reasonable bid price.
 
@@ -172,13 +169,17 @@ class Group8Company(TradingCompany):
 
         # Step 1: Calculate sailing distance to pickup
         try:
-            to_pickup_distance = pr[vessel_port][pickup_port]["distance"]
+            to_pickup_distance = self.headquarters.get_network_distance(
+                vessel_port, pickup_port
+            )  # pr[vessel_port][pickup_port]["distance"]
         except KeyError:
             to_pickup_distance = 999999  # Big penalty if unreachable
 
         # Step 2: Calculate sailing distance from pickup to dropoff
         try:
-            delivery_distance = pr[pickup_port][dropoff_port]["distance"]
+            delivery_distance = self.headquarters.get_network_distance(
+                pickup_port, dropoff_port
+            )  # pr[pickup_port][dropoff_port]["distance"]
         except KeyError:
             delivery_distance = 999999  # Big penalty if unreachable
 

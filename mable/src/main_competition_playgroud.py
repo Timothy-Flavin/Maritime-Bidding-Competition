@@ -48,7 +48,7 @@ def build_specification():
 
     # 🛠️ Add StructuredLoggerObserver before running
     structured_logger = StructuredLoggerObserver(output_dir="logs")
-    sim._event_observer.append(structured_logger)
+    # sim._event_observer.append(structured_logger)
 
     sim.run()
     structured_logger.save()
