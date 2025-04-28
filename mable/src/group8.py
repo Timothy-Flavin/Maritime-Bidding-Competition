@@ -19,6 +19,7 @@ class Group8Company(TradingCompany):
         """
         self.trades = trades
 
+        # TODO: GET BETTER PRICES FOR BIDS
         bid_prices = []
         for trade in trades:
             bid_prices.append([])
@@ -26,7 +27,7 @@ class Group8Company(TradingCompany):
                 bid_prices[-1].append(self.estimate_bid_price(trade, vessel))
         # Run Simulated Annealing to optimize schedule
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
-            trades, fleet=self.fleet, bid_prices=bid_prices
+            trades, fleet=self.fleet, bid_prices=bid_prices, recieve=False
         )
 
         # Build a deterministic schedule from the optimized genome
@@ -42,7 +43,6 @@ class Group8Company(TradingCompany):
             assigned_vessel = self.pick_vessel_for_trade(trade)  # helper to get vessel
             bid_amount = self.estimate_bid_price(trade, assigned_vessel)
             bids.append(Bid(amount=bid_amount, trade=trade))
-
         return bids
 
     def pick_vessel_for_trade(self, trade):
@@ -52,7 +52,6 @@ class Group8Company(TradingCompany):
         """
         # For now: pick first available vessel as a dumb default
         return self.fleet[0]
-
         # 🚨 TODO: Improve later by matching to vessels properly
 
     def bid(self, date, trades):
