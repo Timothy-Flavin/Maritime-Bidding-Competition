@@ -15,7 +15,6 @@ class Group8Company(TradingCompany):
         self._current_scheduling_proposal = None
         self._won_trades = []
         log(f"[Group8] Initializing Group8Company with fleet: {fleet}")
-        self.fleet = fleet
         self.simulated_annealing = SAScheduler(self)  # Initialize simulated annealing
         clear()
 
@@ -37,7 +36,7 @@ class Group8Company(TradingCompany):
         # Run Simulated Annealing to optimize schedule
         log(f"prices: {bid_prices}")
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
-            trades, fleet=self.fleet, bid_prices=bid_prices, recieve=False
+            trades, fleet=self.fleet, bid_prices=bid_prices, recieve=False, debug=True
         )
 
         # Build a deterministic schedule from the optimized genome
@@ -178,12 +177,12 @@ class Group8Company(TradingCompany):
         :param profit_margin: How much profit over cost (e.g., 0.10 = 10%)
         :return: Suggested bid amount (float)
         """
-
-        log("  Inside estimate_bid_price()")
+        if debug:
+            log("  Inside estimate_bid_price()")
         pickup_port = trade.origin_port
         dropoff_port = trade.destination_port
-
-        log(f"  Pickup port: {pickup_port}, Dropoff port: {dropoff_port}")
+        if debug:
+            log(f"  Pickup port: {pickup_port}, Dropoff port: {dropoff_port}")
         location = vessel.location
         if isinstance(location, OnJourney):
             location = location.destination
@@ -193,7 +192,6 @@ class Group8Company(TradingCompany):
             if vessel.journey_log
             else vessel.location
         )
-        log(f"  Vessel port: {vessel_port}")
 
         # Step 1: Calculate sailing distance to pickup
         try:
@@ -227,5 +225,7 @@ class Group8Company(TradingCompany):
 
         # Step 5: Add profit margin
         bid_price = total_cost * (1.0 + profit_margin)
-
+        if debug:
+            log(f"  Vessel port: {vessel_port}")
+            log(f"  Estimated bid price: {bid_price}")
         return bid_price

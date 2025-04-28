@@ -8,6 +8,7 @@ import random
 import copy
 from jank_logger import log, clear
 from mable.simulation_space.universe import OnJourney
+from mable.competition.information import CompanyHeadquarters
 
 
 class SAScheduler:
@@ -28,9 +29,14 @@ class SAScheduler:
     def generate_initial_genome(self, trades, bid_prices, debug=False):
         genome = []  # List of trades to be scheduled
         if debug:
-            log(f"Generating initial genome from {len(trades)} trades: {trades}")
-        min_time_window = self.company.headquarters.current_time()
+            log(f"  Generating initial genome from {len(trades)} ")
+            for trade in trades:
+                log(f"    Trade: {trade}")
+        min_time_window = self.company.headquarters.current_time
         max_time_window = min_time_window + 720  # 720 hours = 30 days
+
+        print(f"  Min time window: {min_time_window}")
+        print(f"  Max time window: {max_time_window}")
         for i, trade in enumerate(trades):
             tw = trade.time_window
             if tw[0] is None:
@@ -42,11 +48,14 @@ class SAScheduler:
             if tw[3] is None:
                 tw[3] = max_time_window
 
+            if debug:
+                log(f"  Trade {i} Time window: {tw}")
             pickup = 10
             dropoff = 9
             while pickup >= dropoff:
                 pickup = random.random() * (tw[1] - tw[0]) + tw[0]
                 dropoff = random.random() * (tw[3] - tw[2]) + tw[2]
+
             genome.append(
                 {
                     "trade": trade,
@@ -60,13 +69,17 @@ class SAScheduler:
             )  # Store trade and its time windows
             if debug:
                 log(
-                    f"Added trade {trade} with tw: {tw}, pickup at {pickup} and dropoff at {dropoff}"
+                    f"  Added trade {trade} with tw: {tw}, pickup at {pickup} and dropoff at {dropoff}"
                 )
+        if debug:
+            log(f"  Initial genome: {genome}")
         cutoffs = []
         for i in range(len(self.fleet)):
             cutoffs.append(random.randint(0, len(genome) - 1))
         cutoffs.sort()  # Sort cutoffs to partition the genome
-        genome.shuffle()  # Shuffle the genome to randomize trade order
+        if debug:
+            log(f"  Cutoffs: {cutoffs}")
+        random.shuffle(genome)  # Shuffle the genome to randomize trade order
         return genome, cutoffs  # To implement (maybe call a trade_utils function)
 
     def deterministic_schedule_from_genome(
@@ -78,7 +91,11 @@ class SAScheduler:
         """
         schedules = []  # List of schedules for each vessel
         simply_scheduled_trades = []  # List of trades scheduled for each vessel
-        now = self.company.headquarters.current_time()
+        now = self.company.headquarters.current_time
+        if debug:
+            print("Getting schedules from genome...")
+            log(f"  Deterministic schedule with Cutoffs: {cutoffs}")
+            log(f"  Fleet: {fleet}")
         for boat in fleet:
             schedules.append(boat.schedule.copy())  # Copy the initial schedule
             simple = schedules[
@@ -96,6 +113,9 @@ class SAScheduler:
                     }
                 )
 
+        if debug:
+            log(f"  Initial schedules: {schedules}")
+            log(f"  Initial simply scheduled trades: {simply_scheduled_trades}")
         allele = 0  # Current allele index in the genome
         vessel_index = 0  # Index of the vessel we are currently scheduling trades for
         while allele < cutoffs[-1]:
@@ -104,9 +124,9 @@ class SAScheduler:
                 if vessel_index > cutoffs[-1]:
                     break
             if debug:
-                log(f"Scheduling trade {allele} for vessel {vessel_index}")
+                log(f"    Scheduling trade {allele} for vessel {vessel_index}")
                 log(
-                    f"Current schedule: {schedules[vessel_index].get_simple_schedule()}"
+                    f"    Current schedule: {schedules[vessel_index].get_simple_schedule()}"
                 )
             schedule_copy = schedules[vessel_index].copy()
             # Go through events in this vessel's schedule and find the insertion points
@@ -119,7 +139,7 @@ class SAScheduler:
             ):
                 insertion_pickup += 1
             if debug:
-                log(f"Insertion point for pickup: {insertion_pickup}")
+                log(f"    Insertion point for pickup: {insertion_pickup}")
             insertion_dropoff = insertion_pickup
             while (
                 simply_scheduled_trades[vessel_index]
@@ -129,16 +149,16 @@ class SAScheduler:
                 insertion_dropoff += 1
 
             if debug:
-                log(f"Insertion point for dropoff: {insertion_dropoff}")
+                log(f"    Insertion point for dropoff: {insertion_dropoff}")
             schedule_copy.add_transportation(
                 genome[allele]["trade"],
-                insertion_pickup,
-                insertion_dropoff,
+                insertion_pickup + 1,  # 1 indexed
+                insertion_dropoff + 1,
             )
 
             if debug:
                 log(
-                    f"Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}"
+                    f"    Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}"
                 )
             if schedule_copy.verify_schedule():
                 schedules[vessel_index] = schedule_copy
@@ -165,9 +185,11 @@ class SAScheduler:
 
                 if debug:
                     log(
-                        f"Trade {allele} scheduled successfully on vessel {vessel_index}."
+                        f"    Trade {allele} scheduled successfully on vessel {vessel_index}."
                     )
-                    log(f"Feasable schedule: {simply_scheduled_trades[vessel_index]}")
+                    log(
+                        f"    Feasable schedule: {simply_scheduled_trades[vessel_index]}"
+                    )
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
