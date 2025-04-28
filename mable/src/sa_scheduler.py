@@ -28,10 +28,8 @@ class SAScheduler:
         genome = []  # List of trades to be scheduled
         if debug:
             log(f"Generating initial genome from {len(trades)} trades: {trades}")
-        # TODO: make this simulation time current and one month instead
-        times = [t for window in trades.values() for t in window if t is not None]
-        min_time_window = min(times) - 1
-        max_time_window = max(times) + 1
+        min_time_window = self.company.headquarters.current_time()
+        max_time_window = min_time_window + 720  # 720 hours = 30 days
         for i, trade in enumerate(trades):
             tw = trade.time_window
             if tw[0] is None:
