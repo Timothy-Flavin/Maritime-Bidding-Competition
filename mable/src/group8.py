@@ -22,16 +22,21 @@ class Group8Company(TradingCompany):
         self.pr = pr
         self.trades = trades
 
+        bid_prices = []
+        for trade in trades:
+            bid_prices.append([])
+            for vessel in self.fleet:
+                bid_prices[-1].append(self.estimate_bid_price(trade, pr, vessel))
         # Run Simulated Annealing to optimize schedule
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
-            trades, self.pr, self.fleet
+            trades, pr=self.pr, fleet=self.fleet, bid_prices=bid_prices
         )
 
         # Build a deterministic schedule from the optimized genome
-        self._current_scheduling_proposal = self.simulated_annealing.deterministic_schedule_from_genome(
-            optimized_genome,
-            optimized_cutoffs,
-            self.fleet
+        self._current_scheduling_proposal = (
+            self.simulated_annealing.deterministic_schedule_from_genome(
+                optimized_genome, optimized_cutoffs, self.fleet
+            )
         )
 
         # Generate smart bids based on estimated travel cost + margin
@@ -42,7 +47,7 @@ class Group8Company(TradingCompany):
             bids.append(Bid(amount=bid_amount, trade=trade))
 
         return bids
-    
+
     def pick_vessel_for_trade(self, trade):
         """
         Very simple placeholder: pick the vessel assigned to this trade.
@@ -73,14 +78,16 @@ class Group8Company(TradingCompany):
             won_trades, self.pr, self.fleet
         )
 
-        final_schedule_proposal = self.simulated_annealing.deterministic_schedule_from_genome(
-            optimized_genome,
-            optimized_cutoffs,
-            self.fleet
+        final_schedule_proposal = (
+            self.simulated_annealing.deterministic_schedule_from_genome(
+                optimized_genome, optimized_cutoffs, self.fleet
+            )
         )
 
         if final_schedule_proposal is None:
-            print("[Group8] Warning: Failed to generate schedule! Submitting empty schedule.")
+            print(
+                "[Group8] Warning: Failed to generate schedule! Submitting empty schedule."
+            )
             final_schedule_proposal = self.generate_empty_schedule()
 
         # Submit schedule proposal to MABLE
@@ -105,7 +112,6 @@ class Group8Company(TradingCompany):
         return self._current_scheduling_proposal
 
     from mable.transport_operation import ScheduleProposal, Schedule
-
 
     def build_schedule_proposal(self, schedule_string, trades):
         """
@@ -153,7 +159,7 @@ class Group8Company(TradingCompany):
     def estimate_bid_price(trade, pr, vessel, profit_margin=0.10):
         """
         Estimate the cost for a vessel to complete a trade, and return a reasonable bid price.
-        
+
         :param trade: Trade object (pickup port, dropoff port, etc.)
         :param pr: Port Route dictionary (paths and distances)
         :param vessel: Vessel object (capacity, speed, etc.)
@@ -166,24 +172,28 @@ class Group8Company(TradingCompany):
 
         # Step 1: Calculate sailing distance to pickup
         try:
-            to_pickup_distance = pr[vessel_port][pickup_port]['distance']
+            to_pickup_distance = pr[vessel_port][pickup_port]["distance"]
         except KeyError:
             to_pickup_distance = 999999  # Big penalty if unreachable
 
         # Step 2: Calculate sailing distance from pickup to dropoff
         try:
-            delivery_distance = pr[pickup_port][dropoff_port]['distance']
+            delivery_distance = pr[pickup_port][dropoff_port]["distance"]
         except KeyError:
             delivery_distance = 999999  # Big penalty if unreachable
 
         total_distance = to_pickup_distance + delivery_distance
 
         # Step 3: Estimate sailing cost (simple linear cost model)
-        cost_per_distance_unit = 1.0  # 🚨 TODO: tune this based on MABLE environment settings!
+        cost_per_distance_unit = (
+            1.0  # 🚨 TODO: tune this based on MABLE environment settings!
+        )
         sailing_cost = total_distance * cost_per_distance_unit
 
         # Step 4: Add loading/unloading effort cost (optional)
-        fixed_handling_cost = 100.0  # 🚨 TODO: tune this based on MABLE competition tuning!
+        fixed_handling_cost = (
+            100.0  # 🚨 TODO: tune this based on MABLE competition tuning!
+        )
         total_cost = sailing_cost + fixed_handling_cost
 
         # Step 5: Add profit margin

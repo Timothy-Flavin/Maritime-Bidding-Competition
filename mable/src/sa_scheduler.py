@@ -3,6 +3,7 @@
 from mable.transport_operation import Vessel, Trade
 from mable.cargo_bidding import TradingCompany
 from mable.extensions.fuel_emissions import VesselWithEngine
+from mable.transportation_scheduling import Schedule
 import random
 import copy
 
@@ -13,21 +14,15 @@ class SAScheduler:
         self.fleet = company.fleet
         # More initialization later
 
-    def generate_initial_genome(self, trades, debug=False):
+    def generate_initial_genome(self, trades, bid_prices, debug=False):
         genome = []  # List of trades to be scheduled
         if debug:
             print(f"Generating initial genome from {len(trades)} trades: {trades}")
-        trades = copy.deepcopy(trades)  # Avoid modifying original trades
-        # Randomly shuffle trades to create a diverse initial genome
-        random.shuffle(trades)
-        if debug:
-            print(f"Shuffled trades: {trades}")
-        # Assign time windows to trades if not already set
         # TODO: make this simulation time current and one month instead
         times = [t for window in trades.values() for t in window if t is not None]
         min_time_window = min(times) - 1
         max_time_window = max(times) + 1
-        for trade in trades:
+        for i, trade in enumerate(trades):
             tw = trade.time_window
             if tw[0] is None:
                 tw[0] = min_time_window
@@ -46,10 +41,12 @@ class SAScheduler:
             genome.append(
                 {
                     "trade": trade,
+                    "trade_id": i,  # Unique ID for the trade
                     "tw": tw,
                     "current_pickup_allele": pickup,
                     "current_dropoff_allele": dropoff,
                     "active": False,  # Active trade in the genome
+                    "prices": bid_prices[i],  # Prices for this trade for each vessel
                 }
             )  # Store trade and its time windows
             if debug:
@@ -60,6 +57,7 @@ class SAScheduler:
         for i in range(len(self.fleet)):
             cutoffs.append(random.randint(0, len(genome) - 1))
         cutoffs.sort()  # Sort cutoffs to partition the genome
+        genome.shuffle()  # Shuffle the genome to randomize trade order
         return genome, cutoffs  # To implement (maybe call a trade_utils function)
 
     def deterministic_schedule_from_genome(
@@ -149,8 +147,9 @@ class SAScheduler:
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
-    def _est_travel_cost(self, vessel: VesselWithEngine, schedule):
-        start_port = vessel.location()  # TODO: fix this for when vessel is on a journey
+    def _est_travel_cost(self, vessel: VesselWithEngine, schedule: Schedule):
+        start_port = vessel.current_location
+        # TODO: fix this for when vessel is on a journey
         loading_costs, unloading_costs, travel_costs = 0, 0, 0
         loading_time, travel_time = 0, 0
         laden = 0
@@ -181,26 +180,34 @@ class SAScheduler:
                 travel_costs += vessel.get_ballast_consumption(
                     travel_time, vessel.speed
                 )
+        schedule.completion_time()
 
         total_costs = loading_costs + unloading_costs + travel_costs
         return total_costs
 
-    def evaluate_fitness(self, schedules, genome, cutoffs, paths, debug=False):
-        c1 = 0.5  # Weight for size of trades
-        c2 = 0.5  # Weight for distance
-
-        t_cost = 0
+    def evaluate_fitness(self, schedules, genome, cutoffs, debug=False):
+        travel_cost = 0
         for vessel_index, schedule in enumerate(schedules):
-            self._est_travel_cost(self.fleet[vessel_index], schedule)
-        pass
+            travel_cost += self._est_travel_cost(self.fleet[vessel_index], schedule)
 
-    def run(self, trades, paths, fleet=None):
+        expected_income = 0
+        cutoff_index = 0
+        for g, gene in genome:
+            while g >= cutoffs[cutoff_index]:
+                cutoff_index += 1
+            if gene["active"]:
+                # If the trade is active, we add its price to the fitness
+                expected_income += gene["prices"][cutoff_index]
+
+        return expected_income - travel_cost  # Fitness is income - cost
+
+    def run(self, trades, paths, bid_prices, fleet=None):
         if fleet is not None:
             self.fleet = fleet
 
         # 1. Generate an initial solution (genome + cutoffs)
         initial_genome, initial_cutoffs = self.generate_initial_genome(
-            trades, debug=True
+            trades, debug=True, bid_prices=bid_prices
         )
 
         current_genome = initial_genome
