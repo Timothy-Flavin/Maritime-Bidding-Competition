@@ -1,3 +1,4 @@
+from mable.simulation_space.universe import OnJourney
 import trade_utils  # Joe's work
 import pickle  # For loading precomputed routes
 from sa_scheduler import SAScheduler  # Tim's work
@@ -5,6 +6,7 @@ from mable.cargo_bidding import TradingCompany, Bid
 from mable.transport_operation import ScheduleProposal, Schedule
 from mable.extensions.fuel_emissions import VesselWithEngine
 from jank_logger import log, clear
+from mable.shipping_market import TimeWindowTrade
 
 
 class Group8Company(TradingCompany):
@@ -23,14 +25,17 @@ class Group8Company(TradingCompany):
         Runs Simulated Annealing to optimize our bids.
         """
         self.trades = trades
-
+        log("Hello from Group8Company!")
         # TODO: GET BETTER PRICES FOR BIDS
         bid_prices = []
         for trade in trades:
             bid_prices.append([])
             for vessel in self.fleet:
-                bid_prices[-1].append(self.estimate_bid_price(trade, vessel))
+                bid_prices[-1].append(
+                    self.estimate_bid_price(trade, vessel, debug=True)
+                )
         # Run Simulated Annealing to optimize schedule
+        log(f"prices: {bid_prices}")
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
             trades, fleet=self.fleet, bid_prices=bid_prices, recieve=False
         )
@@ -157,7 +162,13 @@ class Group8Company(TradingCompany):
 
         return proposal
 
-    def estimate_bid_price(self, trade, vessel: VesselWithEngine, profit_margin=0.10):
+    def estimate_bid_price(
+        self,
+        trade: TimeWindowTrade,
+        vessel: VesselWithEngine,
+        profit_margin=0.10,
+        debug=False,
+    ):
         """
         Estimate the cost for a vessel to complete a trade, and return a reasonable bid price.
 
@@ -167,13 +178,22 @@ class Group8Company(TradingCompany):
         :param profit_margin: How much profit over cost (e.g., 0.10 = 10%)
         :return: Suggested bid amount (float)
         """
-        pickup_port = trade.pickup_port
-        dropoff_port = trade.dropoff_port
+
+        log("  Inside estimate_bid_price()")
+        pickup_port = trade.origin_port
+        dropoff_port = trade.destination_port
+
+        log(f"  Pickup port: {pickup_port}, Dropoff port: {dropoff_port}")
+        location = vessel.location
+        if isinstance(location, OnJourney):
+            location = location.destination
+
         vessel_port = (
             vessel.journey_log[-1].destination
             if vessel.journey_log
             else vessel.location
         )
+        log(f"  Vessel port: {vessel_port}")
 
         # Step 1: Calculate sailing distance to pickup
         try:
