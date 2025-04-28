@@ -12,6 +12,8 @@ class Group8Company(TradingCompany):
         super().__init__(fleet, name)
         self._current_scheduling_proposal = None
         self._won_trades = []
+        log(f"[Group8] Initializing Group8Company with fleet: {fleet}")
+        self.fleet = fleet
         self.simulated_annealing = SAScheduler(self)  # Initialize simulated annealing
         clear()
 

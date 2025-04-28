@@ -261,7 +261,9 @@ class SAScheduler:
         current_cutoffs = initial_cutoffs
 
         if debug:
-            log("Evaluating fitness of initial solution...")
+            log(
+                f"Evaluating fitness of initial solution... from schedules: {schedules}"
+            )
         current_fitness = self.evaluate_fitness(
             schedules=schedules,
             genome=current_genome,
