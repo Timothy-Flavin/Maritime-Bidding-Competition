@@ -7,6 +7,7 @@ from mable.transportation_scheduling import Schedule
 import random
 import copy
 from jank_logger import log, clear
+from mable.simulation_space.universe import OnJourney
 
 
 class SAScheduler:
@@ -172,8 +173,9 @@ class SAScheduler:
 
     def _est_travel_cost(self, vessel: VesselWithEngine, schedule: Schedule):
         start_time = self.company.headquarters.current_time()
-        start_port = vessel.current_location
-        # TODO: fix this for when vessel is on a journey
+        start_port = vessel.location
+        if isinstance(start_port, OnJourney):
+            start_port = start_port.destination
         loading_costs, unloading_costs, travel_costs = 0, 0, 0
         loading_time, travel_time = 0, 0
         laden = 0
