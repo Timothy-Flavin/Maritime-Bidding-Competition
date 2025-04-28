@@ -49,6 +49,7 @@ class SAScheduler:
                     "tw": tw,
                     "current_pickup_allele": pickup,
                     "current_dropoff_allele": dropoff,
+                    "active": False,  # Active trade in the genome
                 }
             )  # Store trade and its time windows
             if debug:
@@ -119,7 +120,9 @@ class SAScheduler:
                 )
             if schedule_copy.verify_schedule():
                 schedules[vessel_index] = schedule_copy
-
+                genome[allele][
+                    "active"
+                ] = True  # Mark this trade as active in the genome
                 # Add the trade to the schedule and our simplified schedule list for sanity
                 simply_scheduled_trades[vessel_index].insert(
                     insertion_dropoff,
@@ -146,7 +149,49 @@ class SAScheduler:
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
-    def evaluate_fitness(self, solution):
+    def _est_travel_cost(self, vessel: VesselWithEngine, schedule):
+        start_port = vessel.location()  # TODO: fix this for when vessel is on a journey
+        loading_costs, unloading_costs, travel_costs = 0, 0, 0
+        loading_time, travel_time = 0, 0
+        laden = 0
+        for event in schedule.get_simple_schedule():
+            dest_port = None
+            if event[0] == "PICK_UP":
+                loading_time = vessel.get_loading_time(
+                    event[1].cargo_type, event[1].amount
+                )
+                loading_costs += vessel.get_loading_consumption(loading_time)
+                dest_port = event[1].origin_port
+                laden += 1
+
+            if event[0] == "DROP_OFF":
+                loading_time = vessel.get_loading_time(
+                    event[1].cargo_type, event[1].amount
+                )
+                unloading_costs += vessel.get_unloading_consumption(loading_time)
+                dest_port = event[1].destination_port
+                laden -= 1
+            travel_distance = self.company.headquarters.get_network_distance(
+                start_port, dest_port
+            )
+            travel_time = vessel.get_travel_time(travel_distance)
+            if laden > 0:
+                travel_costs += vessel.get_laden_consumption(travel_time, vessel.speed)
+            else:
+                travel_costs += vessel.get_ballast_consumption(
+                    travel_time, vessel.speed
+                )
+
+        total_costs = loading_costs + unloading_costs + travel_costs
+        return total_costs
+
+    def evaluate_fitness(self, schedules, genome, cutoffs, paths, debug=False):
+        c1 = 0.5  # Weight for size of trades
+        c2 = 0.5  # Weight for distance
+
+        t_cost = 0
+        for vessel_index, schedule in enumerate(schedules):
+            self._est_travel_cost(self.fleet[vessel_index], schedule)
         pass
 
     def run(self, trades, paths, fleet=None):
@@ -154,7 +199,9 @@ class SAScheduler:
             self.fleet = fleet
 
         # 1. Generate an initial solution (genome + cutoffs)
-        initial_genome, initial_cutoffs = self.generate_initial_genome(trades)
+        initial_genome, initial_cutoffs = self.generate_initial_genome(
+            trades, debug=True
+        )
 
         current_genome = initial_genome
         current_cutoffs = initial_cutoffs
