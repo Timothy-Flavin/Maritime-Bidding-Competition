@@ -6,6 +6,7 @@ from mable.extensions.fuel_emissions import VesselWithEngine
 from mable.transportation_scheduling import Schedule
 import random
 import copy
+from jank_logger import log, clear
 
 
 class SAScheduler:
@@ -26,7 +27,7 @@ class SAScheduler:
     def generate_initial_genome(self, trades, bid_prices, debug=False):
         genome = []  # List of trades to be scheduled
         if debug:
-            print(f"Generating initial genome from {len(trades)} trades: {trades}")
+            log(f"Generating initial genome from {len(trades)} trades: {trades}")
         # TODO: make this simulation time current and one month instead
         times = [t for window in trades.values() for t in window if t is not None]
         min_time_window = min(times) - 1
@@ -59,7 +60,7 @@ class SAScheduler:
                 }
             )  # Store trade and its time windows
             if debug:
-                print(
+                log(
                     f"Added trade {trade} with tw: {tw}, pickup at {pickup} and dropoff at {dropoff}"
                 )
         cutoffs = []
@@ -104,8 +105,8 @@ class SAScheduler:
                 if vessel_index > cutoffs[-1]:
                     break
             if debug:
-                print(f"Scheduling trade {allele} for vessel {vessel_index}")
-                print(
+                log(f"Scheduling trade {allele} for vessel {vessel_index}")
+                log(
                     f"Current schedule: {schedules[vessel_index].get_simple_schedule()}"
                 )
             schedule_copy = schedules[vessel_index].copy()
@@ -119,7 +120,7 @@ class SAScheduler:
             ):
                 insertion_pickup += 1
             if debug:
-                print(f"Insertion point for pickup: {insertion_pickup}")
+                log(f"Insertion point for pickup: {insertion_pickup}")
             insertion_dropoff = insertion_pickup
             while (
                 simply_scheduled_trades[vessel_index]
@@ -129,7 +130,7 @@ class SAScheduler:
                 insertion_dropoff += 1
 
             if debug:
-                print(f"Insertion point for dropoff: {insertion_dropoff}")
+                log(f"Insertion point for dropoff: {insertion_dropoff}")
             schedule_copy.add_transportation(
                 genome[allele]["trade"],
                 insertion_pickup,
@@ -137,7 +138,7 @@ class SAScheduler:
             )
 
             if debug:
-                print(
+                log(
                     f"Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}"
                 )
             if schedule_copy.verify_schedule():
@@ -164,10 +165,10 @@ class SAScheduler:
                 )  # Add trade to the vessel's scheduled trades
 
                 if debug:
-                    print(
+                    log(
                         f"Trade {allele} scheduled successfully on vessel {vessel_index}."
                     )
-                    print(f"Feasable schedule: {simply_scheduled_trades[vessel_index]}")
+                    log(f"Feasable schedule: {simply_scheduled_trades[vessel_index]}")
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
@@ -237,9 +238,9 @@ class SAScheduler:
             self.fleet = fleet
 
         if debug:
-            print(f"Running Simulated Annealing with {len(trades)} trades.")
-            print(f"Bid prices: {bid_prices}")
-            print(f"Generating initial genome and cutoffs...")
+            log(f"Running Simulated Annealing with {len(trades)} trades.")
+            log(f"Bid prices: {bid_prices}")
+            log(f"Generating initial genome and cutoffs...")
         # 1. Generate an initial solution (genome + cutoffs)
         initial_genome, initial_cutoffs = self.generate_initial_genome(
             trades, bid_prices=bid_prices, debug=debug
@@ -249,9 +250,9 @@ class SAScheduler:
                 len(initial_genome) - 1
             )  # Ensure last cutoff includes all trades
         if debug:
-            print(f"Initial genome: {initial_genome}")
-            print(f"Initial cutoffs: {initial_cutoffs}")
-            print(f"Getting schedules from genome...")
+            log(f"Initial genome: {initial_genome}")
+            log(f"Initial cutoffs: {initial_cutoffs}")
+            log(f"Getting schedules from genome...")
 
         schedules = self.deterministic_schedule_from_genome(
             initial_genome, initial_cutoffs, self.fleet, debug=debug
@@ -260,7 +261,7 @@ class SAScheduler:
         current_cutoffs = initial_cutoffs
 
         if debug:
-            print(f"Evaluating fitness of initial solution...")
+            log("Evaluating fitness of initial solution...")
         current_fitness = self.evaluate_fitness(
             schedules=schedules,
             genome=current_genome,
@@ -268,7 +269,7 @@ class SAScheduler:
             debug=debug,  # Pass debug flag to evaluate_fitness
         )
         if debug:
-            print(f"Initial fitness: {current_fitness}")
+            log(f"Initial fitness: {current_fitness}")
 
         best_genome = current_genome
         best_cutoffs = current_cutoffs

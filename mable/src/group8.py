@@ -3,6 +3,8 @@ import pickle  # For loading precomputed routes
 from sa_scheduler import SAScheduler  # Tim's work
 from mable.cargo_bidding import TradingCompany, Bid
 from mable.transport_operation import ScheduleProposal, Schedule
+from mable.extensions.fuel_emissions import VesselWithEngine
+from jank_logger import log, clear
 
 
 class Group8Company(TradingCompany):
@@ -11,6 +13,7 @@ class Group8Company(TradingCompany):
         self._current_scheduling_proposal = None
         self._won_trades = []
         self.simulated_annealing = SAScheduler(self)  # Initialize simulated annealing
+        clear()
 
     def inform(self, trades):
         """
@@ -66,7 +69,7 @@ class Group8Company(TradingCompany):
         self.won_trades = won_trades  # Save for record-keeping
 
         if not won_trades:
-            print("[Group8] No trades won this round.")
+            log("[Group8] No trades won this round.")
             return
 
         # Rebuild schedule from won trades only
@@ -81,7 +84,7 @@ class Group8Company(TradingCompany):
         )
 
         if final_schedule_proposal is None:
-            print(
+            log(
                 "[Group8] Warning: Failed to generate schedule! Submitting empty schedule."
             )
             final_schedule_proposal = self.generate_empty_schedule()
@@ -152,7 +155,7 @@ class Group8Company(TradingCompany):
 
         return proposal
 
-    def estimate_bid_price(self, trade, vessel, profit_margin=0.10):
+    def estimate_bid_price(self, trade, vessel: VesselWithEngine, profit_margin=0.10):
         """
         Estimate the cost for a vessel to complete a trade, and return a reasonable bid price.
 
@@ -164,7 +167,11 @@ class Group8Company(TradingCompany):
         """
         pickup_port = trade.pickup_port
         dropoff_port = trade.dropoff_port
-        vessel_port = vessel.current_location
+        vessel_port = (
+            vessel.journey_log[-1].destination
+            if vessel.journey_log
+            else vessel.location
+        )
 
         # Step 1: Calculate sailing distance to pickup
         try:
