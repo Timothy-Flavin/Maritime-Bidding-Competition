@@ -13,14 +13,53 @@ class SAScheduler:
         self.fleet = company.fleet
         # More initialization later
 
-    def generate_initial_solution(self):
-        pass  # To implement (maybe call a trade_utils function)
+    def generate_initial_genome(self, trades, debug=False):
+        genome = []  # List of trades to be scheduled
+        if debug:
+            print(f"Generating initial genome from {len(trades)} trades: {trades}")
+        trades = copy.deepcopy(trades)  # Avoid modifying original trades
+        # Randomly shuffle trades to create a diverse initial genome
+        random.shuffle(trades)
+        if debug:
+            print(f"Shuffled trades: {trades}")
+        # Assign time windows to trades if not already set
+        # TODO: make this simulation time current and one month instead
+        times = [t for window in trades.values() for t in window if t is not None]
+        min_time_window = min(times) - 1
+        max_time_window = max(times) + 1
+        for trade in trades:
+            tw = trade.time_window
+            if tw[0] is None:
+                tw[0] = min_time_window
+            if tw[1] is None:
+                tw[1] = max_time_window
+            if tw[2] is None:
+                tw[2] = min_time_window
+            if tw[3] is None:
+                tw[3] = max_time_window
 
-    def mutate_solution(self, solution):
-        pass
-
-    def evaluate_fitness(self, solution):
-        pass
+            pickup = 10
+            dropoff = 9
+            while pickup >= dropoff:
+                pickup = random.random() * (tw[1] - tw[0]) + tw[0]
+                dropoff = random.random() * (tw[3] - tw[2]) + tw[2]
+            genome.append(
+                {
+                    "trade": trade,
+                    "tw": tw,
+                    "current_pickup_allele": pickup,
+                    "current_dropoff_allele": dropoff,
+                }
+            )  # Store trade and its time windows
+            if debug:
+                print(
+                    f"Added trade {trade} with tw: {tw}, pickup at {pickup} and dropoff at {dropoff}"
+                )
+        cutoffs = []
+        for i in range(len(self.fleet)):
+            cutoffs.append(random.randint(0, len(genome) - 1))
+        cutoffs.sort()  # Sort cutoffs to partition the genome
+        return genome, cutoffs  # To implement (maybe call a trade_utils function)
 
     def deterministic_schedule_from_genome(
         self, genome, cutoffs: list[int], fleet: list[VesselWithEngine], debug=False
@@ -41,7 +80,11 @@ class SAScheduler:
         while allele < cutoffs[-1]:
             while allele >= cutoffs[vessel_index]:
                 vessel_index += 1
-
+            if debug:
+                print(f"Scheduling trade {allele} for vessel {vessel_index}")
+                print(
+                    f"Current schedule: {schedules[vessel_index].get_simple_schedule()}"
+                )
             schedule_copy = schedules[vessel_index].copy()
             # Go through events in this vessel's schedule and find the insertion points
             # for the current trade in the genome
@@ -52,6 +95,8 @@ class SAScheduler:
                 < genome[allele]["current_pickup_allele"]
             ):
                 insertion_pickup += 1
+            if debug:
+                print(f"Insertion point for pickup: {insertion_pickup}")
             insertion_dropoff = insertion_pickup
             while (
                 simply_scheduled_trades[vessel_index]
@@ -60,12 +105,18 @@ class SAScheduler:
             ):
                 insertion_dropoff += 1
 
+            if debug:
+                print(f"Insertion point for dropoff: {insertion_dropoff}")
             schedule_copy.add_transportation(
-                genome[allele].trade,
+                genome[allele]["trade"],
                 insertion_pickup,
                 insertion_dropoff,
             )
 
+            if debug:
+                print(
+                    f"Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}"
+                )
             if schedule_copy.verify_schedule():
                 schedules[vessel_index] = schedule_copy
 
@@ -73,26 +124,37 @@ class SAScheduler:
                 simply_scheduled_trades[vessel_index].insert(
                     insertion_dropoff,
                     {
-                        "gene": genome[allele],
+                        "gene": genome[allele]["trade"],
                         "pickup": False,
-                        "time": genome["current_dropoff_allele"],
+                        "time": genome[allele]["current_dropoff_allele"],
                     },
                 )  # Add trade to the vessel's scheduled trades
                 simply_scheduled_trades[vessel_index].insert(
                     insertion_pickup,
                     {
-                        "gene": genome[allele],
+                        "gene": genome[allele]["trade"],
                         "pickup": True,
-                        "time": genome["current_pickup_allele"],
+                        "time": genome[allele]["current_pickup_allele"],
                     },
                 )  # Add trade to the vessel's scheduled trades
+
+                if debug:
+                    print(
+                        f"Trade {allele} scheduled successfully on vessel {vessel_index}."
+                    )
+                    print(f"Feasable schedule: {simply_scheduled_trades[vessel_index]}")
+            allele += 1  # Move to the next trade in the genome
+        return schedules, simply_scheduled_trades
+
+    def evaluate_fitness(self, solution):
+        pass
 
     def run(self, trades, paths, fleet=None):
         if fleet is not None:
             self.fleet = fleet
 
         # 1. Generate an initial solution (genome + cutoffs)
-        initial_genome, initial_cutoffs = self.generate_initial_solution(trades)
+        initial_genome, initial_cutoffs = self.generate_initial_genome(trades)
 
         current_genome = initial_genome
         current_cutoffs = initial_cutoffs
