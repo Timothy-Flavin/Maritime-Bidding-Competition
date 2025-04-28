@@ -121,14 +121,14 @@ class SAScheduler:
         while allele < cutoffs[-1]:
             while allele >= cutoffs[vessel_index]:
                 vessel_index += 1
-                if vessel_index > cutoffs[-1]:
+                if vessel_index >= cutoffs[-1]:
                     break
             if debug:
                 log(f"    Scheduling trade {allele} for vessel {vessel_index}")
                 log(
                     f"    Current schedule: {schedules[vessel_index].get_simple_schedule()}"
                 )
-            schedule_copy = schedules[vessel_index].copy()
+            schedule_copy: Schedule = schedules[vessel_index].copy()
             # Go through events in this vessel's schedule and find the insertion points
             # for the current trade in the genome
             insertion_pickup = 0
@@ -142,7 +142,8 @@ class SAScheduler:
                 log(f"    Insertion point for pickup: {insertion_pickup}")
             insertion_dropoff = insertion_pickup
             while (
-                simply_scheduled_trades[vessel_index]
+                len(simply_scheduled_trades[vessel_index]) > 0
+                and insertion_dropoff < len(simply_scheduled_trades[vessel_index])
                 and simply_scheduled_trades[vessel_index][insertion_dropoff]["time"]
                 < genome[allele]["current_dropoff_allele"]
             ):
@@ -158,7 +159,7 @@ class SAScheduler:
 
             if debug:
                 log(
-                    f"    Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}"
+                    f"    Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}\n    {schedule_copy.verify_schedule()}"
                 )
             if schedule_copy.verify_schedule():
                 schedules[vessel_index] = schedule_copy
@@ -193,15 +194,25 @@ class SAScheduler:
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
-    def _est_travel_cost(self, vessel: VesselWithEngine, schedule: Schedule):
-        start_time = self.company.headquarters.current_time()
+    def _est_travel_cost(
+        self, vessel: VesselWithEngine, schedule: Schedule, debug=False
+    ):
+        if debug:
+            log(f"Estimating travel cost for vessel {vessel.name}...")
+        start_time = self.company.headquarters.current_time
         start_port = vessel.location
         if isinstance(start_port, OnJourney):
             start_port = start_port.destination
+        if debug:
+            log(f"  Start port: {start_port}")
+            log(f"  Start time: {start_time}")
+            log(f"  simple schedule: {schedule.get_simple_schedule()}")
         loading_costs, unloading_costs, travel_costs = 0, 0, 0
         loading_time, travel_time = 0, 0
         laden = 0
         for event in schedule.get_simple_schedule():
+            if debug:
+                log(f"    Event: {event}")
             dest_port = None
             if event[0] == "PICK_UP":
                 # TODO: Handle idling before this pickup will not be trivial
@@ -230,29 +241,64 @@ class SAScheduler:
                 travel_costs += vessel.get_ballast_consumption(
                     travel_time, vessel.speed
                 )
-        final_time = schedule.completion_time()
 
+            if debug:
+                log(
+                    f"    Travel cost: {travel_costs}, Loading cost: {loading_costs}, Unloading cost: {unloading_costs}"
+                )
+
+        if debug:
+            print(f"completion time: {schedule.completion_time()}")
+        final_time = (
+            schedule.completion_time()
+            if len(schedule.get_simple_schedule()) > 0
+            else start_time
+        )
         idle_time = start_time + 720 - final_time
         # TODO: Check if 720 is right
         idle_cost = vessel.get_idle_consumption(idle_time)
         total_costs = loading_costs + unloading_costs + travel_costs + idle_cost
+
+        if debug:
+            log(f"  Total costs: {total_costs}")
+            log(f"  Idle time: {idle_time}")
+            log(f"  Idle cost: {idle_cost}")
+            log(f"  Final time: {final_time}")
+            log(f"  Start time: {start_time}")
         return total_costs
 
     def evaluate_fitness(self, schedules, genome, cutoffs, debug=False):
         # TODO: Add penalty for missing genome to fitness
         # Calculate expected income and travel costs if we get paid or not
+        if debug:
+            log(f"Evaluating fitness...")
+
         travel_cost = 0
         for vessel_index, schedule in enumerate(schedules):
-            travel_cost += self._est_travel_cost(self.fleet[vessel_index], schedule)
+            if debug:
+                log(f"  Evaluating travel cost for vessel {vessel_index}... {schedule}")
+            travel_cost += self._est_travel_cost(
+                self.fleet[vessel_index], schedule, debug=debug
+            )
 
+        if debug:
+            log(f"  summing active prices...")
         expected_income = 0
         cutoff_index = 0
-        for g, gene in genome:
+        for g, gene in enumerate(genome):
             while g >= cutoffs[cutoff_index]:
                 cutoff_index += 1
+                if cutoff_index >= len(cutoffs):
+                    break
             if gene["active"]:
+                if debug:
+                    log(f"  Adding price for gene {g} with index {cutoff_index}")
+                    log(f"  income: {gene["prices"][cutoff_index]}")
                 expected_income += gene["prices"][cutoff_index]
-
+        if debug:
+            log(f"  Expected income: {expected_income}")
+            log(f"  Travel cost: {travel_cost}")
+            log(f"  Fitness: {expected_income - travel_cost}")
         return expected_income - travel_cost  # Fitness is income - cost
 
     def run(self, trades, bid_prices, fleet=None, recieve=False, debug=False):
@@ -267,16 +313,15 @@ class SAScheduler:
         initial_genome, initial_cutoffs = self.generate_initial_genome(
             trades, bid_prices=bid_prices, debug=debug
         )
-        if recieve:
-            initial_cutoffs[-1] = (
-                len(initial_genome) - 1
-            )  # Ensure last cutoff includes all trades
+        initial_cutoffs[-1] = len(
+            initial_genome
+        )  # Ensure last cutoff includes all trades initially
         if debug:
             log(f"Initial genome: {initial_genome}")
             log(f"Initial cutoffs: {initial_cutoffs}")
             log(f"Getting schedules from genome...")
 
-        schedules = self.deterministic_schedule_from_genome(
+        schedules, simple_schedules = self.deterministic_schedule_from_genome(
             initial_genome, initial_cutoffs, self.fleet, debug=debug
         )
         current_genome = initial_genome
@@ -304,11 +349,19 @@ class SAScheduler:
         # 2. Simulated Annealing Loop
         while temperature > self.final_temperature:
             # Mutation step
+            if debug:
+                log(f"Iteration {iteration}: Current fitness: {current_fitness}")
+                log(f"Current temperature: {temperature}")
+                log(f"Mutating solution...")
             mutated_genome, mutated_cutoffs = self.mutate_solution(
                 current_genome, current_cutoffs, recieve=recieve, debug=debug
             )
-            mutated_schedules = self.deterministic_schedule_from_genome(
-                mutated_genome, mutated_cutoffs, self.fleet, debug=debug
+            if debug:
+                log(f"gettind determinstic schedule from mutated genome...")
+            mutated_schedules, mutated_simple_schedules = (
+                self.deterministic_schedule_from_genome(
+                    mutated_genome, mutated_cutoffs, self.fleet, debug=debug
+                )
             )
             # Fitness of mutated solution
             mutated_fitness = self.evaluate_fitness(
