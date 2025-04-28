@@ -9,14 +9,16 @@ import copy
 from jank_logger import log, clear
 from mable.simulation_space.universe import OnJourney
 from mable.competition.information import CompanyHeadquarters
+import numpy as np
+import time
 
 
 class SAScheduler:
     def __init__(
         self,
         company: TradingCompany,
-        initial_temperature=1000,
-        final_temperature=0.1,
+        initial_temperature=2000,
+        final_temperature=100,
         cooling_rate=0.98,
     ):
         self.company = company
@@ -92,6 +94,9 @@ class SAScheduler:
         schedules = []  # List of schedules for each vessel
         simply_scheduled_trades = []  # List of trades scheduled for each vessel
         now = self.company.headquarters.current_time
+        for i in range(len(genome)):
+            genome[i]["active"] = False
+        # Reset all trades to inactive before building the schedule
         if debug:
             print("Getting schedules from genome...")
             log(f"  Deterministic schedule with Cutoffs: {cutoffs}")
@@ -121,8 +126,8 @@ class SAScheduler:
         while allele < cutoffs[-1]:
             while allele >= cutoffs[vessel_index]:
                 vessel_index += 1
-                if vessel_index >= cutoffs[-1]:
-                    break
+            if vessel_index >= len(cutoffs):
+                break
             if debug:
                 log(f"    Scheduling trade {allele} for vessel {vessel_index}")
                 log(
@@ -288,8 +293,8 @@ class SAScheduler:
         for g, gene in enumerate(genome):
             while g >= cutoffs[cutoff_index]:
                 cutoff_index += 1
-                if cutoff_index >= len(cutoffs):
-                    break
+            if cutoff_index >= len(cutoffs):
+                break
             if gene["active"]:
                 if debug:
                     log(f"  Adding price for gene {g} with index {cutoff_index}")
@@ -302,6 +307,7 @@ class SAScheduler:
         return expected_income - travel_cost  # Fitness is income - cost
 
     def run(self, trades, bid_prices, fleet=None, recieve=False, debug=False):
+        start = time.time()
         if fleet is not None:
             self.fleet = fleet
 
@@ -347,7 +353,7 @@ class SAScheduler:
         temperature = self.starting_temperature
         iteration = 0
         # 2. Simulated Annealing Loop
-        while temperature > self.final_temperature:
+        while temperature > self.final_temperature and time.time() - start < 10:
             # Mutation step
             if debug:
                 log(f"Iteration {iteration}: Current fitness: {current_fitness}")
@@ -371,7 +377,14 @@ class SAScheduler:
                 debug=debug,
             )
             # Decide if we accept the new solution
-            if self.accept_solution(current_fitness, mutated_fitness, temperature):
+            e = np.exp((mutated_fitness - current_fitness) / temperature)
+            if debug:
+                log(f"Mutated fitness: {mutated_fitness}")
+                log(f"Current fitness: {current_fitness}")
+                log(f"Acceptance probability: {e}")
+            if mutated_fitness > current_fitness or random.random() < e:
+                if debug:
+                    log(f"Accepting mutated solution...")
                 current_genome = mutated_genome
                 current_cutoffs = mutated_cutoffs
                 current_fitness = mutated_fitness
@@ -403,28 +416,47 @@ class SAScheduler:
         )
 
         if mutation_type == "swap_trades":
+
             if len(new_genome) >= 2:
                 i, j = random.sample(range(len(new_genome)), 2)
+                if debug:
+                    log(f"Swapping trades in genome... {i,j}")
                 new_genome[i], new_genome[j] = new_genome[j], new_genome[i]
 
         elif mutation_type == "adjust_cutoffs":
             if len(new_cutoffs) > 0:
                 idx = random.randint(0, len(new_cutoffs) - 1)
                 adjustment = random.choice([-1, 1])
-                new_cutoffs[idx] = max(1, new_cutoffs[idx] + adjustment)
+                new_cutoffs[idx] = max(0, new_cutoffs[idx] + adjustment)
                 new_cutoffs = sorted(new_cutoffs)
             if recieve:
-                new_cutoffs[-1] = (
-                    len(genome) - 1
-                )  # Ensure last cutoff includes all trades
+                new_cutoffs[-1] = len(genome)  # Ensure last cutoff includes all trades
+            if debug:
+                log(f"Adjusting cutoffs... {new_cutoffs}")
         elif mutation_type == "perturb_times":
             if len(new_genome) > 0:
                 idx = random.randint(0, len(new_genome) - 1)
-                trade = new_genome[idx]
-                # If you store real-numbered timestamps in trade, you could slightly nudge them
-                if hasattr(trade, "pickup_time"):
-                    trade.pickup_time += random.uniform(-1.0, 1.0)
-                if hasattr(trade, "dropoff_time"):
-                    trade.dropoff_time += random.uniform(-1.0, 1.0)
+                gene = new_genome[idx]
+                if debug:
+                    log(
+                        f"  Perturbing times for trade {idx} in genome... {gene['current_pickup_allele'], gene['current_dropoff_allele']}"
+                    )
+                gene["current_pickup_allele"] = 1
+                gene["current_dropoff_allele"] = 0
 
+                # If you store real-numbered timestamps in trade, you could slightly nudge them
+                while gene["current_pickup_allele"] >= gene["current_dropoff_allele"]:
+                    # Ensure pickup time is before dropoff time
+                    # This is a simple perturbation, resample the pickup and dropoff times
+                    # within the trade's time window
+                    gene["current_pickup_allele"] = random.uniform(
+                        gene["tw"][0], gene["tw"][1]
+                    )
+                    gene["current_dropoff_allele"] = random.uniform(
+                        gene["tw"][2], gene["tw"][3]
+                    )
+                if debug:
+                    log(
+                        f"  To {gene['current_pickup_allele'], gene['current_dropoff_allele']}"
+                    )
         return new_genome, new_cutoffs
