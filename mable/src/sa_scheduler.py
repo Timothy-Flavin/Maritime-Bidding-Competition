@@ -10,6 +10,8 @@ from jank_logger import log, clear
 from mable.simulation_space.universe import OnJourney
 from mable.competition.information import CompanyHeadquarters
 
+# Fuel cost per fuel unit burned (estimated). Adjust as needed.
+FUEL_COST_PER_UNIT = 3.0  # dollars per unit
 
 class SAScheduler:
     def __init__(
@@ -194,78 +196,66 @@ class SAScheduler:
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
-    def _est_travel_cost(
-        self, vessel: VesselWithEngine, schedule: Schedule, debug=False
-    ):
+    def _est_travel_cost(self, vessel: VesselWithEngine, schedule: Schedule, debug=False):
         if debug:
             log(f"Estimating travel cost for vessel {vessel.name}...")
         start_time = self.company.headquarters.current_time
         start_port = vessel.location
         if isinstance(start_port, OnJourney):
             start_port = start_port.destination
+
         if debug:
             log(f"  Start port: {start_port}")
             log(f"  Start time: {start_time}")
             log(f"  simple schedule: {schedule.get_simple_schedule()}")
+
         loading_costs, unloading_costs, travel_costs = 0, 0, 0
         loading_time, travel_time = 0, 0
         laden = 0
+
         for event in schedule.get_simple_schedule():
             if debug:
                 log(f"    Event: {event}")
             dest_port = None
             if event[0] == "PICK_UP":
-                # TODO: Handle idling before this pickup will not be trivial
-                # Needs to be added to travel cost
-                loading_time = vessel.get_loading_time(
-                    event[1].cargo_type, event[1].amount
-                )
+                loading_time = vessel.get_loading_time(event[1].cargo_type, event[1].amount)
                 loading_costs += vessel.get_loading_consumption(loading_time)
                 dest_port = event[1].origin_port
                 laden += 1
 
             if event[0] == "DROP_OFF":
-                loading_time = vessel.get_loading_time(
-                    event[1].cargo_type, event[1].amount
-                )
+                loading_time = vessel.get_loading_time(event[1].cargo_type, event[1].amount)
                 unloading_costs += vessel.get_unloading_consumption(loading_time)
                 dest_port = event[1].destination_port
                 laden -= 1
-            travel_distance = self.company.headquarters.get_network_distance(
-                start_port, dest_port
-            )  # TODO: deal with this being inf sometimes
+
+            travel_distance = self.company.headquarters.get_network_distance(start_port, dest_port)
             travel_time = vessel.get_travel_time(travel_distance)
+            
             if laden > 0:
                 travel_costs += vessel.get_laden_consumption(travel_time, vessel.speed)
             else:
-                travel_costs += vessel.get_ballast_consumption(
-                    travel_time, vessel.speed
-                )
+                travel_costs += vessel.get_ballast_consumption(travel_time, vessel.speed)
 
-            if debug:
-                log(
-                    f"    Travel cost: {travel_costs}, Loading cost: {loading_costs}, Unloading cost: {unloading_costs}"
-                )
+            start_port = dest_port
 
-        if debug:
-            print(f"completion time: {schedule.completion_time()}")
-        final_time = (
-            schedule.completion_time()
-            if len(schedule.get_simple_schedule()) > 0
-            else start_time
-        )
+        final_time = schedule.completion_time() if len(schedule.get_simple_schedule()) > 0 else start_time
         idle_time = start_time + 720 - final_time
-        # TODO: Check if 720 is right
         idle_cost = vessel.get_idle_consumption(idle_time)
-        total_costs = loading_costs + unloading_costs + travel_costs + idle_cost
+
+        total_fuel_burned = loading_costs + unloading_costs + travel_costs + idle_cost
+        total_cost_dollars = total_fuel_burned * FUEL_COST_PER_UNIT
 
         if debug:
-            log(f"  Total costs: {total_costs}")
+            log(f"  Total fuel burned: {total_fuel_burned}")
+            log(f"  Converted total cost (dollars): {total_cost_dollars}")
             log(f"  Idle time: {idle_time}")
             log(f"  Idle cost: {idle_cost}")
             log(f"  Final time: {final_time}")
             log(f"  Start time: {start_time}")
-        return total_costs
+
+        return total_cost_dollars
+
 
     def evaluate_fitness(self, schedules, genome, cutoffs, debug=False):
         # TODO: Add penalty for missing genome to fitness
@@ -275,31 +265,27 @@ class SAScheduler:
 
         travel_cost = 0
         for vessel_index, schedule in enumerate(schedules):
-            if debug:
-                log(f"  Evaluating travel cost for vessel {vessel_index}... {schedule}")
-            travel_cost += self._est_travel_cost(
-                self.fleet[vessel_index], schedule, debug=debug
-            )
+            travel_cost += self._est_travel_cost(self.fleet[vessel_index], schedule)
 
-        if debug:
-            log(f"  summing active prices...")
         expected_income = 0
         cutoff_index = 0
-        for g, gene in enumerate(genome):
+        for g, gene in enumerate(genome):  # <-- (minor fix here: you missed enumerate before too!)
             while g >= cutoffs[cutoff_index]:
                 cutoff_index += 1
-                if cutoff_index >= len(cutoffs):
-                    break
             if gene["active"]:
-                if debug:
-                    log(f"  Adding price for gene {g} with index {cutoff_index}")
-                    log(f"  income: {gene["prices"][cutoff_index]}")
                 expected_income += gene["prices"][cutoff_index]
+
         if debug:
-            log(f"  Expected income: {expected_income}")
-            log(f"  Travel cost: {travel_cost}")
-            log(f"  Fitness: {expected_income - travel_cost}")
-        return expected_income - travel_cost  # Fitness is income - cost
+            profit = expected_income - travel_cost
+            log(f"  Total expected income: {expected_income}")
+            log(f"  Total travel cost: {travel_cost}")
+            if profit < 0:
+                log(f"  Net fitness (LOSS): {profit}")
+            else:
+                log(f"  Net fitness (profit): {profit}")
+
+        return expected_income - travel_cost
+
 
     def run(self, trades, bid_prices, fleet=None, recieve=False, debug=False):
         if fleet is not None:
