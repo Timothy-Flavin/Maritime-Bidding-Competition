@@ -78,11 +78,23 @@ class SAScheduler:
         """
         schedules = []  # List of schedules for each vessel
         simply_scheduled_trades = []  # List of trades scheduled for each vessel
-
+        now = self.company.headquarters.current_time()
         for boat in fleet:
             schedules.append(boat.schedule.copy())  # Copy the initial schedule
+            simple = schedules[
+                -1
+            ].get_simple_schedule()  # Ensure the schedule is initialized
             simply_scheduled_trades.append([])  # Initialize empty trade list
-            # TODO: simply_scheduled will not match schedules if the schedule is not empty
+
+            # if existing schedule, convert it to a simple format
+            for s in simple:
+                simply_scheduled_trades[-1].append(
+                    {
+                        "gene": s[1],  # Trade object
+                        "pickup": s[0] == "PICK_UP",  # True if pickup, False if dropoff
+                        "time": now,  # set time to now to force new trades to be later
+                    }
+                )
 
         allele = 0  # Current allele index in the genome
         vessel_index = 0  # Index of the vessel we are currently scheduling trades for
