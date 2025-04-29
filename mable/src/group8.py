@@ -8,6 +8,7 @@ from mable.extensions.fuel_emissions import VesselWithEngine
 from jank_logger import log, clear
 from mable.shipping_market import TimeWindowTrade
 import config
+import traceback
 
 
 class Group8Company(TradingCompany):
@@ -31,9 +32,14 @@ class Group8Company(TradingCompany):
         for trade in trades:
             bid_prices.append([])
             for vessel in self.fleet:
-                bid_prices[-1].append(
-                    self.estimate_bid_price(trade, vessel, debug=True)
-                )
+                try:
+                    bid_prices[-1].append(
+                        self.estimate_bid_price(trade, vessel, debug=True)
+                    )
+                except Exception as e:
+                    log(f"Error estimating bid price for trade {trade}: {e}")
+                    log(traceback.format_exc())
+                    exit()
         # Run Simulated Annealing to optimize schedule
         log(f"prices: {bid_prices}")
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
@@ -165,7 +171,11 @@ class Group8Company(TradingCompany):
 
     def estimate_bid_price(
         self,
-        trade, vessel, expected_payment=None, debug=False,
+        trade,
+        vessel,
+        expected_payment=None,
+        profit_margin=0.1,
+        debug=False,
     ):
         """
         Estimate travel cost for a trade and decide on a smart bid price.
@@ -179,9 +189,6 @@ class Group8Company(TradingCompany):
         Returns:
             - bid_price: float | None (None if we decide not to bid)
         """
-        if profit_margin is None:
-            profit_margin = config.profit_margin
-
         if debug:
             log("  Inside estimate_bid_price()")
 
@@ -192,7 +199,9 @@ class Group8Company(TradingCompany):
         dummy_schedule.add_transportation(trade, 0, 1)
 
         # Estimate travel cost
-        est_cost = self.simulated_annealing._est_travel_cost(vessel, dummy_schedule, debug=debug)
+        est_cost = self.simulated_annealing._est_travel_cost(
+            vessel, dummy_schedule, debug=debug
+        )
 
         # Set a profit margin (20% recommended)
         profit_margin = 0.2
@@ -203,11 +212,15 @@ class Group8Company(TradingCompany):
         if expected_payment is not None:
             if bid_price > expected_payment:
                 if debug:
-                    print(f"[BID SKIP] Estimated bid price {bid_price:.2f} > expected payment {expected_payment:.2f}.")
+                    print(
+                        f"[BID SKIP] Estimated bid price {bid_price:.2f} > expected payment {expected_payment:.2f}."
+                    )
                 return None
 
         if debug:
-            print(f"[BID] Trade {trade.origin_port.name} -> {trade.destination_port.name}")
+            print(
+                f"[BID] Trade {trade.origin_port.name} -> {trade.destination_port.name}"
+            )
             print(f"    Est. cost: {est_cost:.2f}, Proposed bid: {bid_price:.2f}")
 
         return bid_price
