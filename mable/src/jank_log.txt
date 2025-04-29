@@ -70,23 +70,23 @@ Generating initial genome and cutoffs...
     Trade: TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])
     Trade: TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])
   Trade 0 Time window: [8688, 8928, 8760, 9000]
-  Added trade TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]) with tw: [8688, 8928, 8760, 9000], pickup at 8828.066803687729 and dropoff at 8966.375208835387
+  Added trade TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]) with tw: [8688, 8928, 8760, 9000], pickup at 8865.683530839711 and dropoff at 8950.55345624803
   Trade 1 Time window: [8976, 9216, 9336, 9576]
-  Added trade TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]) with tw: [8976, 9216, 9336, 9576], pickup at 9032.85097114469 and dropoff at 9440.62533038255
+  Added trade TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]) with tw: [8976, 9216, 9336, 9576], pickup at 9130.265193278423 and dropoff at 9455.029274826113
   Trade 2 Time window: [9000, 9240, 9192, 9432]
-  Added trade TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]) with tw: [9000, 9240, 9192, 9432], pickup at 9086.4950464461 and dropoff at 9232.251132419136
+  Added trade TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]) with tw: [9000, 9240, 9192, 9432], pickup at 9066.904421773175 and dropoff at 9366.884771200095
   Trade 3 Time window: [8880, 9120, 9240, 9480]
-  Added trade TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]) with tw: [8880, 9120, 9240, 9480], pickup at 9042.91147318639 and dropoff at 9282.08392256782
+  Added trade TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]) with tw: [8880, 9120, 9240, 9480], pickup at 8902.446328493652 and dropoff at 9351.910900142173
   Trade 4 Time window: [9048, 9288, 9168, 9408]
-  Added trade TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]) with tw: [9048, 9288, 9168, 9408], pickup at 9117.391768986343 and dropoff at 9235.558391502096
-  Initial genome: [{'trade': TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]), 'trade_id': 0, 'tw': [8688, 8928, 8760, 9000], 'current_pickup_allele': 8828.066803687729, 'current_dropoff_allele': 8966.375208835387, 'active': False, 'prices': [8436.703, 8122.664000000001, 8375.829]}, {'trade': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'trade_id': 1, 'tw': [8976, 9216, 9336, 9576], 'current_pickup_allele': 9032.85097114469, 'current_dropoff_allele': 9440.62533038255, 'active': False, 'prices': [6925.523000000001, 8573.895000000002, 6869.566]}, {'trade': TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]), 'trade_id': 2, 'tw': [9000, 9240, 9192, 9432], 'current_pickup_allele': 9086.4950464461, 'current_dropoff_allele': 9232.251132419136, 'active': False, 'prices': [13401.124000000002, 15065.820000000002, 13340.250000000002]}, {'trade': TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]), 'trade_id': 3, 'tw': [8880, 9120, 9240, 9480], 'current_pickup_allele': 9042.91147318639, 'current_dropoff_allele': 9282.08392256782, 'active': False, 'prices': [16906.780000000002, 13611.356000000002, 16845.906000000003]}, {'trade': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'trade_id': 4, 'tw': [9048, 9288, 9168, 9408], 'current_pickup_allele': 9117.391768986343, 'current_dropoff_allele': 9235.558391502096, 'active': False, 'prices': [9371.208000000002, 9057.158, 9310.334]}]
-  Cutoffs: [1, 2, 4]
-Initial genome: [{'trade': TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]), 'trade_id': 2, 'tw': [9000, 9240, 9192, 9432], 'current_pickup_allele': 9086.4950464461, 'current_dropoff_allele': 9232.251132419136, 'active': False, 'prices': [13401.124000000002, 15065.820000000002, 13340.250000000002]}, {'trade': TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]), 'trade_id': 0, 'tw': [8688, 8928, 8760, 9000], 'current_pickup_allele': 8828.066803687729, 'current_dropoff_allele': 8966.375208835387, 'active': False, 'prices': [8436.703, 8122.664000000001, 8375.829]}, {'trade': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'trade_id': 1, 'tw': [8976, 9216, 9336, 9576], 'current_pickup_allele': 9032.85097114469, 'current_dropoff_allele': 9440.62533038255, 'active': False, 'prices': [6925.523000000001, 8573.895000000002, 6869.566]}, {'trade': TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]), 'trade_id': 3, 'tw': [8880, 9120, 9240, 9480], 'current_pickup_allele': 9042.91147318639, 'current_dropoff_allele': 9282.08392256782, 'active': False, 'prices': [16906.780000000002, 13611.356000000002, 16845.906000000003]}, {'trade': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'trade_id': 4, 'tw': [9048, 9288, 9168, 9408], 'current_pickup_allele': 9117.391768986343, 'current_dropoff_allele': 9235.558391502096, 'active': False, 'prices': [9371.208000000002, 9057.158, 9310.334]}]
-Initial cutoffs: [1, 2, 5]
+  Added trade TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]) with tw: [9048, 9288, 9168, 9408], pickup at 9191.176603769254 and dropoff at 9328.542454111932
+  Initial genome: [{'trade': TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]), 'trade_id': 0, 'tw': [8688, 8928, 8760, 9000], 'current_pickup_allele': 8865.683530839711, 'current_dropoff_allele': 8950.55345624803, 'active': False, 'prices': [8436.703, 8122.664000000001, 8375.829]}, {'trade': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'trade_id': 1, 'tw': [8976, 9216, 9336, 9576], 'current_pickup_allele': 9130.265193278423, 'current_dropoff_allele': 9455.029274826113, 'active': False, 'prices': [6925.523000000001, 8573.895000000002, 6869.566]}, {'trade': TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]), 'trade_id': 2, 'tw': [9000, 9240, 9192, 9432], 'current_pickup_allele': 9066.904421773175, 'current_dropoff_allele': 9366.884771200095, 'active': False, 'prices': [13401.124000000002, 15065.820000000002, 13340.250000000002]}, {'trade': TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]), 'trade_id': 3, 'tw': [8880, 9120, 9240, 9480], 'current_pickup_allele': 8902.446328493652, 'current_dropoff_allele': 9351.910900142173, 'active': False, 'prices': [16906.780000000002, 13611.356000000002, 16845.906000000003]}, {'trade': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'trade_id': 4, 'tw': [9048, 9288, 9168, 9408], 'current_pickup_allele': 9191.176603769254, 'current_dropoff_allele': 9328.542454111932, 'active': False, 'prices': [9371.208000000002, 9057.158, 9310.334]}]
+  Cutoffs: [3, 4, 4]
+Initial genome: [{'trade': TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]), 'trade_id': 2, 'tw': [9000, 9240, 9192, 9432], 'current_pickup_allele': 9066.904421773175, 'current_dropoff_allele': 9366.884771200095, 'active': False, 'prices': [13401.124000000002, 15065.820000000002, 13340.250000000002]}, {'trade': TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]), 'trade_id': 0, 'tw': [8688, 8928, 8760, 9000], 'current_pickup_allele': 8865.683530839711, 'current_dropoff_allele': 8950.55345624803, 'active': False, 'prices': [8436.703, 8122.664000000001, 8375.829]}, {'trade': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'trade_id': 4, 'tw': [9048, 9288, 9168, 9408], 'current_pickup_allele': 9191.176603769254, 'current_dropoff_allele': 9328.542454111932, 'active': False, 'prices': [9371.208000000002, 9057.158, 9310.334]}, {'trade': TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]), 'trade_id': 3, 'tw': [8880, 9120, 9240, 9480], 'current_pickup_allele': 8902.446328493652, 'current_dropoff_allele': 9351.910900142173, 'active': False, 'prices': [16906.780000000002, 13611.356000000002, 16845.906000000003]}, {'trade': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'trade_id': 1, 'tw': [8976, 9216, 9336, 9576], 'current_pickup_allele': 9130.265193278423, 'current_dropoff_allele': 9455.029274826113, 'active': False, 'prices': [6925.523000000001, 8573.895000000002, 6869.566]}]
+Initial cutoffs: [3, 4, 5]
 Getting schedules from genome...
-  Deterministic schedule with Cutoffs: [1, 2, 5]
+  Deterministic schedule with Cutoffs: [3, 4, 5]
   Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
-  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x7579cef72900>, <mable.transportation_scheduling.Schedule object at 0x7579cef729f0>, <mable.transportation_scheduling.Schedule object at 0x7579cef72a80>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e906b0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92030>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92090>]
   Initial simply scheduled trades: [[], [], []]
     Scheduling trade 0 for vessel 0
     Current schedule: []
@@ -94,45 +94,51 @@ Getting schedules from genome...
     Insertion point for dropoff: 0
     Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
     False
-    Scheduling trade 1 for vessel 1
+    Scheduling trade 1 for vessel 0
     Current schedule: []
     Insertion point for pickup: 0
     Insertion point for dropoff: 0
     Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
     False
-    Scheduling trade 2 for vessel 2
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 2 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9191.176603769254}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9328.542454111932}]
+    Scheduling trade 3 for vessel 1
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 4 for vessel 2
     Current schedule: []
     Insertion point for pickup: 0
     Insertion point for dropoff: 0
     Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
     True
-    Trade 2 scheduled successfully on vessel 2.
-    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9032.85097114469}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9440.62533038255}]
-    Scheduling trade 3 for vessel 2
-    Current schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    Insertion point for pickup: 1
-    Insertion point for dropoff: 1
-    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    False
-    Scheduling trade 4 for vessel 2
-    Current schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    Insertion point for pickup: 1
-    Insertion point for dropoff: 1
-    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    False
-Evaluating fitness of initial solution... from schedules: [<mable.transportation_scheduling.Schedule object at 0x7579cef72900>, <mable.transportation_scheduling.Schedule object at 0x7579cef729f0>, <mable.transportation_scheduling.Schedule object at 0x7579cef72d20>]
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9130.265193278423}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9455.029274826113}]
+Evaluating fitness of initial solution... from schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e922d0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92030>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e91040>]
 Evaluating fitness...
-  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x7579cef72900>
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e922d0>
 Estimating travel cost for vessel HMS-S-0...
   Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
   Start time: 8640
-  simple schedule: []
-  Total costs: 231.98999999999998
-  Idle time: 720
-  Idle cost: 231.98999999999998
-  Final time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
   Start time: 8640
-  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x7579cef729f0>
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92030>
 Estimating travel cost for vessel HMS-A-0...
   Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
   Start time: 8640
@@ -142,7 +148,7 @@ Estimating travel cost for vessel HMS-A-0...
   Idle cost: 231.98999999999998
   Final time: 8640
   Start time: 8640
-  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x7579cef72d20>
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e91040>
 Estimating travel cost for vessel HMS-V-0...
   Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
   Start time: 8640
@@ -157,15 +163,22 @@ Estimating travel cost for vessel HMS-V-0...
   Final time: 9264.083332166005
   Start time: 8640
   summing active prices...
-  Adding price for gene 2 with index 2
+  Adding price for gene 2 with index 0
+  income: 9371.208000000002
+  Adding price for gene 4 with index 2
   income: 6869.566
-  Expected income: 6869.566
-  Travel cost: 2717.380051352218
-  Fitness: 4152.185948647782
-Initial fitness: 4152.185948647782
-  Deterministic schedule with Cutoffs: [1, 2, 5]
+  Expected income: 16240.774000000001
+  Travel cost: 4344.374793726646
+  Fitness: 11896.399206273356
+Initial fitness: 11896.399206273356
+Iteration 0: Current fitness: 11896.399206273356
+Current temperature: 2000
+Mutating solution...
+Swapping trades in genome... (4, 1)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [3, 4, 5]
   Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
-  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x7579cef73230>, <mable.transportation_scheduling.Schedule object at 0x7579cef72a80>, <mable.transportation_scheduling.Schedule object at 0x7579cef72de0>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e92420>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e923c0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e926f0>]
   Initial simply scheduled trades: [[], [], []]
     Scheduling trade 0 for vessel 0
     Current schedule: []
@@ -173,35 +186,978 @@ Initial fitness: 4152.185948647782
     Insertion point for dropoff: 0
     Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
     False
-    Scheduling trade 1 for vessel 1
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 2 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9191.176603769254}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9328.542454111932}]
+    Scheduling trade 3 for vessel 1
     Current schedule: []
     Insertion point for pickup: 0
     Insertion point for dropoff: 0
     Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
     False
-    Scheduling trade 2 for vessel 2
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92960>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e923c0>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e926f0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 213.89999999999998
+  Idle time: 720
+  Idle cost: 213.89999999999998
+  Final time: 8640
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 2 with index 0
+  income: 9371.208000000002
+  Expected income: 9371.208000000002
+  Travel cost: 2304.8747423744285
+  Fitness: 7066.333257625574
+Mutated fitness: 7066.333257625574
+Current fitness: 11896.399206273356
+Acceptance probability: 0.0893643921427586
+Iteration 1: Current fitness: 11896.399206273356
+Current temperature: 1960.0
+Mutating solution...
+Swapping trades in genome... (2, 3)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [3, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e92570>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92270>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92090>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 1
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 1.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9191.176603769254}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9328.542454111932}]
+    Scheduling trade 4 for vessel 2
     Current schedule: []
     Insertion point for pickup: 0
     Insertion point for dropoff: 0
     Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
     True
-    Trade 2 scheduled successfully on vessel 2.
-    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9032.85097114469}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9440.62533038255}]
-    Scheduling trade 3 for vessel 2
-    Current schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    Insertion point for pickup: 0
-    Insertion point for dropoff: 0
-    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    False
-    Scheduling trade 4 for vessel 2
-    Current schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    Insertion point for pickup: 1
-    Insertion point for dropoff: 1
-    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
-    False
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9130.265193278423}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9455.029274826113}]
 Evaluating fitness...
-  Evaluating travel cost for vessel 0... [<mable.transportation_scheduling.Schedule object at 0x7579cef73230>, <mable.transportation_scheduling.Schedule object at 0x7579cef72a80>, <mable.transportation_scheduling.Schedule object at 0x7579cef73380>]
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92570>
 Estimating travel cost for vessel HMS-S-0...
   Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
   Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b90772c0>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1015.4439081582932, Loading cost: 1.0894952846610522, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1737.2546189751492, Loading cost: 1.0894952846610522, Unloading cost: 7.082164769464729
+  Total costs: 1788.8405300662978
+  Idle time: 134.73969027396197
+  Idle cost: 43.41425103702283
+  Final time: 9225.260309726038
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b9076ff0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 1
+  income: 9057.158
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 15926.723999999998
+  Travel cost: 4274.230581418516
+  Fitness: 11652.493418581482
+Mutated fitness: 11652.493418581482
+Current fitness: 11896.399206273356
+Acceptance probability: 0.8829897130780944
+Accepting mutated solution...
+Iteration 2: Current fitness: 11652.493418581482
+Current temperature: 1920.8
+Mutating solution...
+  Perturbing times for trade 4 in genome... (9130.265193278423, 9455.029274826113)
+  To (9012.938357015846, 9398.745931054089)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [3, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e92750>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92390>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92900>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 1
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 1.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9191.176603769254}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9328.542454111932}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9012.938357015846}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9398.745931054089}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92750>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92a80>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1015.4439081582932, Loading cost: 1.0894952846610522, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1737.2546189751492, Loading cost: 1.0894952846610522, Unloading cost: 7.082164769464729
+  Total costs: 1788.8405300662978
+  Idle time: 134.73969027396197
+  Idle cost: 43.41425103702283
+  Final time: 9225.260309726038
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e923c0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 1
+  income: 9057.158
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 15926.723999999998
+  Travel cost: 4274.230581418516
+  Fitness: 11652.493418581482
+Mutated fitness: 11652.493418581482
+Current fitness: 11652.493418581482
+Acceptance probability: 1.0
+Accepting mutated solution...
+Iteration 3: Current fitness: 11652.493418581482
+Current temperature: 1882.384
+Mutating solution...
+Adjusting cutoffs... [4, 4, 5]
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b9076fc0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92600>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92270>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9191.176603769254}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9328.542454111932}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9012.938357015846}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9398.745931054089}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92480>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92600>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b90764e0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 16240.774000000001
+  Travel cost: 4344.374793726646
+  Fitness: 11896.399206273356
+Mutated fitness: 11896.399206273356
+Current fitness: 11652.493418581482
+Acceptance probability: 1.138341993129272
+Accepting mutated solution...
+Iteration 4: Current fitness: 11896.399206273356
+Current temperature: 1844.73632
+Mutating solution...
+  Perturbing times for trade 3 in genome... (9191.176603769254, 9328.542454111932)
+  To (9103.75491775627, 9205.657667377911)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e926f0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e91700>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e927b0>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9103.75491775627}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9205.657667377911}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9012.938357015846}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9398.745931054089}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92d50>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e91700>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e926f0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 16240.774000000001
+  Travel cost: 4344.374793726646
+  Fitness: 11896.399206273356
+Mutated fitness: 11896.399206273356
+Current fitness: 11896.399206273356
+Acceptance probability: 1.0
+Accepting mutated solution...
+Iteration 5: Current fitness: 11896.399206273356
+Current temperature: 1807.8415936
+Mutating solution...
+Swapping trades in genome... (3, 4)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b9076fc0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92420>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92960>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    False
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9103.75491775627}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9205.657667377911}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b9076fc0>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92420>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92ba0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 3786.8704106885098, Loading cost: 0.4854248743464831, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 4993.892781955594, Loading cost: 0.4854248743464831, Unloading cost: 4.200034794973402
+  Total costs: 5034.547715225942
+  Idle time: 121.0753669599817
+  Idle cost: 35.96947360102789
+  Final time: 9238.924633040018
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 4 with index 2
+  income: 9310.334
+  Expected income: 9310.334
+  Travel cost: 5498.527715225941
+  Fitness: 3811.8062847740593
+Mutated fitness: 3811.8062847740593
+Current fitness: 11896.399206273356
+Acceptance probability: 0.01142491607158165
+Iteration 6: Current fitness: 11896.399206273356
+Current temperature: 1771.6847617279998
+Mutating solution...
+Swapping trades in genome... (2, 0)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e925a0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e922a0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92d50>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9103.75491775627}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9205.657667377911}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9012.938357015846}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9398.745931054089}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e927b0>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e922a0>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e925a0>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 16240.774000000001
+  Travel cost: 4344.374793726646
+  Fitness: 11896.399206273356
+Mutated fitness: 11896.399206273356
+Current fitness: 11896.399206273356
+Acceptance probability: 1.0
+Accepting mutated solution...
+Iteration 7: Current fitness: 11896.399206273356
+Current temperature: 1736.2510664934398
+Mutating solution...
+Swapping trades in genome... (0, 2)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b90772c0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92420>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92780>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9103.75491775627}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9205.657667377911}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9012.938357015846}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9398.745931054089}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e929f0>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92420>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b9076540>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 16240.774000000001
+  Travel cost: 4344.374793726646
+  Fitness: 11896.399206273356
+Mutated fitness: 11896.399206273356
+Current fitness: 11896.399206273356
+Acceptance probability: 1.0
+Accepting mutated solution...
+Iteration 8: Current fitness: 11896.399206273356
+Current temperature: 1701.5260451635709
+Mutating solution...
+Swapping trades in genome... (0, 4)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e92180>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92840>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92120>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9103.75491775627}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9205.657667377911}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92cf0>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92840>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92120>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 213.89999999999998
+  Idle time: 720
+  Idle cost: 213.89999999999998
+  Final time: 8640
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
+  Expected income: 9371.208000000002
+  Travel cost: 2304.8747423744285
+  Fitness: 7066.333257625574
+Mutated fitness: 7066.333257625574
+Current fitness: 11896.399206273356
+Acceptance probability: 0.05850359536792193
+Iteration 9: Current fitness: 11896.399206273356
+Current temperature: 1667.4955242602994
+Mutating solution...
+  Perturbing times for trade 3 in genome... (9103.75491775627, 9205.657667377911)
+  To (9226.789939558575, 9405.032629841324)
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 5]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b90764e0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92b40>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e927b0>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9226.789939558575}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9405.032629841324}]
+    Scheduling trade 4 for vessel 2
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    True
+    Trade 4 scheduled successfully on vessel 2.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': True, 'time': 9012.938357015846}, {'gene': TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]), 'pickup': False, 'time': 9398.745931054089}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92510>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92b40>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b9074440>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 1161.675072292069, Loading cost: 1.5790370231142918, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Puerto Jose-bd9e62d67225 (10.09938, -64.8722)>, destination_port=Port<Escombreras-8ff2f5149d51 (37.56818, -0.96804)>, amount=198703.6600924413, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8976, 9216, 9336, 9576]))
+    Travel cost: 2209.66349115883, Loading cost: 1.5790370231142918, Unloading cost: 13.662279767924494
+  Total costs: 2253.400051352218
+  Idle time: 95.91666783399523
+  Idle cost: 28.495243402349416
+  Final time: 9264.083332166005
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
+  Adding price for gene 4 with index 2
+  income: 6869.566
+  Expected income: 16240.774000000001
+  Travel cost: 4344.374793726646
+  Fitness: 11896.399206273356
+Mutated fitness: 11896.399206273356
+Current fitness: 11896.399206273356
+Acceptance probability: 1.0
+Accepting mutated solution...
+Iteration 10: Current fitness: 11896.399206273356
+Current temperature: 1634.1456137750934
+Mutating solution...
+Adjusting cutoffs... [4, 4, 4]
+gettind determinstic schedule from mutated genome...
+  Deterministic schedule with Cutoffs: [4, 4, 4]
+  Fleet: [<name: HMS-S-0, location: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=41428.0, capacity=145000.0)]>, <name: HMS-A-0, location: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=28571.0, capacity=100000.0)]>, <name: HMS-V-0, location: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>, speed: 14.0, hold: [CargoCapacity(cargo_type='Oil', loading_rate=81428.0, capacity=285000.0)]>]
+  Initial schedules: [<mable.transportation_scheduling.Schedule object at 0x79c1b0e921e0>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92840>, <mable.transportation_scheduling.Schedule object at 0x79c1b0e92120>]
+  Initial simply scheduled trades: [[], [], []]
+    Scheduling trade 0 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Kiire-c1d11e2429fa (31.38772, 130.55385)>, destination_port=Port<Singapore-bfe15a9e31a0 (1.32447, 103.82839)>, amount=154299.49523851255, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9000, 9240, 9192, 9432]))]
+    False
+    Scheduling trade 1 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Taman-9f1125c5b4b6 (45.12656, 36.66068)>, destination_port=Port<Bourgas-16d93a3bfdd3 (42.45578, 27.49359)>, amount=71975.5543005505, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8688, 8928, 8760, 9000]))]
+    False
+    Scheduling trade 2 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Tanjung Pelepas-71ae886ba35d (1.34033, 103.54542)>, destination_port=Port<Fujairah-ca26fade3b91 (25.16933, 56.3799)>, amount=114876.49893571401, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[8880, 9120, 9240, 9480]))]
+    False
+    Scheduling trade 3 for vessel 0
+    Current schedule: []
+    Insertion point for pickup: 0
+    Insertion point for dropoff: 0
+    Checking schedule copy feasibility: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    True
+    Trade 3 scheduled successfully on vessel 0.
+    Feasable schedule: [{'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': True, 'time': 9226.789939558575}, {'gene': TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]), 'pickup': False, 'time': 9405.032629841324}]
+Evaluating fitness...
+  Evaluating travel cost for vessel 0... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92ae0>
+Estimating travel cost for vessel HMS-S-0...
+  Start port: Port<Corpus Christi-7a30d31f121f (27.81704, -97.40814)>
+  Start time: 8640
+  simple schedule: [('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408])), ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))]
+    Event: ('PICK_UP', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1057.6002606054637, Loading cost: 0.7513751515412505, Unloading cost: 0
+    Event: ('DROP_OFF', TimeWindowTrade(origin_port=Port<Novorossiysk-45a5021eee47 (44.7148, 37.81347)>, destination_port=Port<Augusta-facbcc9badd3 (37.20765, 15.20693)>, amount=61085.141019887335, cargo_type='Oil', time=8640, probability=1, status=<TradeStatus.UNKNOWN: 1>, time_window=[9048, 9288, 9168, 9408]))
+    Travel cost: 1816.0780339106586, Loading cost: 0.7513751515412505, Unloading cost: 4.88424567028041
+  Total costs: 1858.9847423744284
+  Idle time: 115.67387862495161
+  Idle cost: 37.27108764194795
+  Final time: 9244.326121375048
+  Start time: 8640
+  Evaluating travel cost for vessel 1... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92840>
+Estimating travel cost for vessel HMS-A-0...
+  Start port: Port<Santos-78f08d89b90b (-23.91124, -46.35488)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 231.98999999999998
+  Idle time: 720
+  Idle cost: 231.98999999999998
+  Final time: 8640
+  Start time: 8640
+  Evaluating travel cost for vessel 2... <mable.transportation_scheduling.Schedule object at 0x79c1b0e92120>
+Estimating travel cost for vessel HMS-V-0...
+  Start port: Port<Brownsville-03c37f9d341d (25.96482, -97.36475)>
+  Start time: 8640
+  simple schedule: []
+  Total costs: 213.89999999999998
+  Idle time: 720
+  Idle cost: 213.89999999999998
+  Final time: 8640
+  Start time: 8640
+  summing active prices...
+  Adding price for gene 3 with index 0
+  income: 9371.208000000002
 [Group8] No trades won this round.
