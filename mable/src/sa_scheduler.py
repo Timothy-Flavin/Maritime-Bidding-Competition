@@ -9,16 +9,19 @@ import copy
 from jank_logger import log, clear
 from mable.simulation_space.universe import OnJourney
 from mable.competition.information import CompanyHeadquarters
+import numpy as np
+import time
 
 # Fuel cost per fuel unit burned (estimated). Adjust as needed.
 FUEL_COST_PER_UNIT = 3.0  # dollars per unit
+
 
 class SAScheduler:
     def __init__(
         self,
         company: TradingCompany,
-        initial_temperature=1000,
-        final_temperature=0.1,
+        initial_temperature=2000,
+        final_temperature=100,
         cooling_rate=0.98,
     ):
         self.company = company
@@ -94,6 +97,9 @@ class SAScheduler:
         schedules = []  # List of schedules for each vessel
         simply_scheduled_trades = []  # List of trades scheduled for each vessel
         now = self.company.headquarters.current_time
+        for i in range(len(genome)):
+            genome[i]["active"] = False
+        # Reset all trades to inactive before building the schedule
         if debug:
             print("Getting schedules from genome...")
             log(f"  Deterministic schedule with Cutoffs: {cutoffs}")
@@ -123,8 +129,8 @@ class SAScheduler:
         while allele < cutoffs[-1]:
             while allele >= cutoffs[vessel_index]:
                 vessel_index += 1
-                if vessel_index >= cutoffs[-1]:
-                    break
+            if vessel_index >= len(cutoffs):
+                break
             if debug:
                 log(f"    Scheduling trade {allele} for vessel {vessel_index}")
                 log(
@@ -196,7 +202,9 @@ class SAScheduler:
             allele += 1  # Move to the next trade in the genome
         return schedules, simply_scheduled_trades
 
-    def _est_travel_cost(self, vessel: VesselWithEngine, schedule: Schedule, debug=False):
+    def _est_travel_cost(
+        self, vessel: VesselWithEngine, schedule: Schedule, debug=False
+    ):
         if debug:
             log(f"Estimating travel cost for vessel {vessel.name}...")
         start_time = self.company.headquarters.current_time
@@ -218,28 +226,40 @@ class SAScheduler:
                 log(f"    Event: {event}")
             dest_port = None
             if event[0] == "PICK_UP":
-                loading_time = vessel.get_loading_time(event[1].cargo_type, event[1].amount)
+                loading_time = vessel.get_loading_time(
+                    event[1].cargo_type, event[1].amount
+                )
                 loading_costs += vessel.get_loading_consumption(loading_time)
                 dest_port = event[1].origin_port
                 laden += 1
 
             if event[0] == "DROP_OFF":
-                loading_time = vessel.get_loading_time(event[1].cargo_type, event[1].amount)
+                loading_time = vessel.get_loading_time(
+                    event[1].cargo_type, event[1].amount
+                )
                 unloading_costs += vessel.get_unloading_consumption(loading_time)
                 dest_port = event[1].destination_port
                 laden -= 1
 
-            travel_distance = self.company.headquarters.get_network_distance(start_port, dest_port)
+            travel_distance = self.company.headquarters.get_network_distance(
+                start_port, dest_port
+            )
             travel_time = vessel.get_travel_time(travel_distance)
-            
+
             if laden > 0:
                 travel_costs += vessel.get_laden_consumption(travel_time, vessel.speed)
             else:
-                travel_costs += vessel.get_ballast_consumption(travel_time, vessel.speed)
+                travel_costs += vessel.get_ballast_consumption(
+                    travel_time, vessel.speed
+                )
 
             start_port = dest_port
 
-        final_time = schedule.completion_time() if len(schedule.get_simple_schedule()) > 0 else start_time
+        final_time = (
+            schedule.completion_time()
+            if len(schedule.get_simple_schedule()) > 0
+            else start_time
+        )
         idle_time = start_time + 720 - final_time
         idle_cost = vessel.get_idle_consumption(idle_time)
 
@@ -256,7 +276,6 @@ class SAScheduler:
 
         return total_cost_dollars
 
-
     def evaluate_fitness(self, schedules, genome, cutoffs, debug=False):
         # TODO: Add penalty for missing genome to fitness
         # Calculate expected income and travel costs if we get paid or not
@@ -269,9 +288,13 @@ class SAScheduler:
 
         expected_income = 0
         cutoff_index = 0
-        for g, gene in enumerate(genome):  # <-- (minor fix here: you missed enumerate before too!)
+        for g, gene in enumerate(
+            genome
+        ):  # <-- (minor fix here: you missed enumerate before too!)
             while g >= cutoffs[cutoff_index]:
                 cutoff_index += 1
+            if cutoff_index >= len(cutoffs):
+                break
             if gene["active"]:
                 expected_income += gene["prices"][cutoff_index]
 
@@ -286,8 +309,8 @@ class SAScheduler:
 
         return expected_income - travel_cost
 
-
     def run(self, trades, bid_prices, fleet=None, recieve=False, debug=False):
+        start = time.time()
         if fleet is not None:
             self.fleet = fleet
 
@@ -333,7 +356,7 @@ class SAScheduler:
         temperature = self.starting_temperature
         iteration = 0
         # 2. Simulated Annealing Loop
-        while temperature > self.final_temperature:
+        while temperature > self.final_temperature and time.time() - start < 10:
             # Mutation step
             if debug:
                 log(f"Iteration {iteration}: Current fitness: {current_fitness}")
@@ -357,7 +380,14 @@ class SAScheduler:
                 debug=debug,
             )
             # Decide if we accept the new solution
-            if self.accept_solution(current_fitness, mutated_fitness, temperature):
+            e = np.exp((mutated_fitness - current_fitness) / temperature)
+            if debug:
+                log(f"Mutated fitness: {mutated_fitness}")
+                log(f"Current fitness: {current_fitness}")
+                log(f"Acceptance probability: {e}")
+            if mutated_fitness > current_fitness or random.random() < e:
+                if debug:
+                    log(f"Accepting mutated solution...")
                 current_genome = mutated_genome
                 current_cutoffs = mutated_cutoffs
                 current_fitness = mutated_fitness
@@ -389,28 +419,47 @@ class SAScheduler:
         )
 
         if mutation_type == "swap_trades":
+
             if len(new_genome) >= 2:
                 i, j = random.sample(range(len(new_genome)), 2)
+                if debug:
+                    log(f"Swapping trades in genome... {i,j}")
                 new_genome[i], new_genome[j] = new_genome[j], new_genome[i]
 
         elif mutation_type == "adjust_cutoffs":
             if len(new_cutoffs) > 0:
                 idx = random.randint(0, len(new_cutoffs) - 1)
                 adjustment = random.choice([-1, 1])
-                new_cutoffs[idx] = max(1, new_cutoffs[idx] + adjustment)
+                new_cutoffs[idx] = max(0, new_cutoffs[idx] + adjustment)
                 new_cutoffs = sorted(new_cutoffs)
             if recieve:
-                new_cutoffs[-1] = (
-                    len(genome) - 1
-                )  # Ensure last cutoff includes all trades
+                new_cutoffs[-1] = len(genome)  # Ensure last cutoff includes all trades
+            if debug:
+                log(f"Adjusting cutoffs... {new_cutoffs}")
         elif mutation_type == "perturb_times":
             if len(new_genome) > 0:
                 idx = random.randint(0, len(new_genome) - 1)
-                trade = new_genome[idx]
-                # If you store real-numbered timestamps in trade, you could slightly nudge them
-                if hasattr(trade, "pickup_time"):
-                    trade.pickup_time += random.uniform(-1.0, 1.0)
-                if hasattr(trade, "dropoff_time"):
-                    trade.dropoff_time += random.uniform(-1.0, 1.0)
+                gene = new_genome[idx]
+                if debug:
+                    log(
+                        f"  Perturbing times for trade {idx} in genome... {gene['current_pickup_allele'], gene['current_dropoff_allele']}"
+                    )
+                gene["current_pickup_allele"] = 1
+                gene["current_dropoff_allele"] = 0
 
+                # If you store real-numbered timestamps in trade, you could slightly nudge them
+                while gene["current_pickup_allele"] >= gene["current_dropoff_allele"]:
+                    # Ensure pickup time is before dropoff time
+                    # This is a simple perturbation, resample the pickup and dropoff times
+                    # within the trade's time window
+                    gene["current_pickup_allele"] = random.uniform(
+                        gene["tw"][0], gene["tw"][1]
+                    )
+                    gene["current_dropoff_allele"] = random.uniform(
+                        gene["tw"][2], gene["tw"][3]
+                    )
+                if debug:
+                    log(
+                        f"  To {gene['current_pickup_allele'], gene['current_dropoff_allele']}"
+                    )
         return new_genome, new_cutoffs
