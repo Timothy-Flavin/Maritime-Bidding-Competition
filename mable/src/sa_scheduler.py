@@ -144,6 +144,7 @@ class SAScheduler:
             insertion_pickup = 0
             while (
                 len(simply_scheduled_trades[vessel_index]) > 0  # check if exists yet
+                and insertion_pickup < len(simply_scheduled_trades[vessel_index])
                 and simply_scheduled_trades[vessel_index][insertion_pickup]["time"]
                 < genome[allele]["current_pickup_allele"]
             ):

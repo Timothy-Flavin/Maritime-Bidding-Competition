@@ -25,41 +25,84 @@ class Group8Company(TradingCompany):
         Called before each auction to inform the company of available trades.
         Runs Simulated Annealing to optimize our bids.
         """
-        self.trades = trades
-        log("Hello from Group8Company!")
-        # TODO: GET BETTER PRICES FOR BIDS
-        bid_prices = []
-        for trade in trades:
-            bid_prices.append([])
-            for vessel in self.fleet:
-                try:
-                    bid_prices[-1].append(
-                        self.estimate_bid_price(trade, vessel, debug=True)
-                    )
-                except Exception as e:
-                    log(f"Error estimating bid price for trade {trade}: {e}")
-                    log(traceback.format_exc())
-                    exit()
-        # Run Simulated Annealing to optimize schedule
-        log(f"prices: {bid_prices}")
-        optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
-            trades, fleet=self.fleet, bid_prices=bid_prices, recieve=False, debug=True
-        )
-        log(f"optimized genome: {optimized_genome}")
-        log(f"optimized cutoffs: {optimized_cutoffs}")
-        # Build a deterministic schedule from the optimized genome
-        self._current_scheduling_proposal = (
-            self.simulated_annealing.deterministic_schedule_from_genome(
-                optimized_genome, optimized_cutoffs, self.fleet
-            )
-        )
+        try:
 
-        # Generate smart bids based on estimated travel cost + margin
-        bids = []
-        for trade in self._current_scheduling_proposal.scheduled_trades:
-            assigned_vessel = self.pick_vessel_for_trade(trade)  # helper to get vessel
-            bid_amount = self.estimate_bid_price(trade, assigned_vessel)
-            bids.append(Bid(amount=bid_amount, trade=trade))
+            self.trades = trades
+            log("Hello from Group8Company!")
+            # TODO: GET BETTER PRICES FOR BIDS
+            bid_prices = []
+            for trade in trades:
+                bid_prices.append([])
+                for vessel in self.fleet:
+                    try:
+                        bid_prices[-1].append(
+                            self.estimate_bid_price(trade, vessel, debug=True)
+                        )
+                    except Exception as e:
+                        log(f"Error estimating bid price for trade {trade}: {e}")
+                        log(traceback.format_exc())
+                        exit()
+            # Run Simulated Annealing to optimize schedule
+            log(f"prices: {bid_prices}")
+            try:
+                optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
+                    trades,
+                    fleet=self.fleet,
+                    bid_prices=bid_prices,
+                    recieve=False,
+                    debug=False,
+                )
+            except Exception as e:
+                log(f"Error running simulated annealing: {e}")
+                log(traceback.format_exc())
+                exit()
+            log(f"optimized genome: {optimized_genome}")
+            log(f"optimized cutoffs: {optimized_cutoffs}")
+            # Build a deterministic schedule from the optimized genome
+            schedules, tim_sched = (
+                self.simulated_annealing.deterministic_schedule_from_genome(
+                    optimized_genome, optimized_cutoffs, self.fleet
+                )
+            )
+            log(f"optimized schedules: {schedules}")
+            # Generate smart bids based on estimated travel cost + margin
+            bids = []
+            all_trades = []
+            prop_dict = {}
+            costs = {}
+            for i, schedule in enumerate(schedules):
+                # Get the vessel assigned to this schedule
+                vessel = self.fleet[i]
+                # Get the trades in this schedule
+                log("trying to get trades")
+                trades = schedule.get_scheduled_trades()
+                log("hmm")
+                # Add the trades to the list of all trades
+                for t in trades:
+                    all_trades.append(t)
+                log("gonna add vessel to dict")
+                prop_dict[vessel] = schedule
+                log(f"vessel: {vessel}")
+                log(f"trades: {trades}")
+                # For each trade, estimate the bid price
+                for trade in trades:
+                    bid_amount = self.estimate_bid_price(trade, vessel)
+                    bids.append(Bid(amount=bid_amount, trade=trade))
+                    costs[trade] = bid_amount
+            log(f"bids: {bids}")
+            log(f"all trades: {all_trades}")
+            log(f"prop_dict: {prop_dict}")
+            self._current_scheduling_proposal = ScheduleProposal(
+                schedules=prop_dict, scheduled_trades=all_trades, costs=costs
+            )
+            # for trade in self._current_scheduling_proposal.scheduled_trades:
+            #     assigned_vessel = self.pick_vessel_for_trade(trade)  # helper to get vessel
+            #     bid_amount = self.estimate_bid_price(trade, assigned_vessel)
+            #     bids.append(Bid(amount=bid_amount, trade=trade))
+        except Exception as e:
+            log(f"ERROR IN INFORM SOMEHOW: {e}")
+            log(traceback.format_exc())
+            exit()
         return bids
 
     def pick_vessel_for_trade(self, trade):
