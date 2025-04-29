@@ -91,7 +91,7 @@ class Group8Company(TradingCompany):
             won_trades, self.fleet
         )
 
-        final_schedule_proposal = (
+        final_schedule_proposal, tim_sched = (
             self.simulated_annealing.deterministic_schedule_from_genome(
                 optimized_genome, optimized_cutoffs, self.fleet
             )
@@ -111,7 +111,6 @@ class Group8Company(TradingCompany):
         Generate an empty ScheduleProposal (no operations).
         Useful as a fallback if no feasible schedule can be generated.
         """
-        from mable.transport_operation import ScheduleProposal
 
         empty_proposal = ScheduleProposal()
         return empty_proposal
@@ -123,8 +122,6 @@ class Group8Company(TradingCompany):
                 "No schedule proposal ready when propose_schedules() was called!"
             )
         return self._current_scheduling_proposal
-
-    from mable.transport_operation import ScheduleProposal, Schedule
 
     def build_schedule_proposal(self, schedule_string, trades):
         """
@@ -193,15 +190,11 @@ class Group8Company(TradingCompany):
             log("  Inside estimate_bid_price()")
 
         # Create a dummy schedule with just this trade
-        from mable.transport_operation import ScheduleProposal
 
-        dummy_schedule = ScheduleProposal()
-        dummy_schedule.add_transportation(trade, 0, 1)
-
+        sched = vessel.schedule.copy()
+        sched.add_transportation(trade)
         # Estimate travel cost
-        est_cost = self.simulated_annealing._est_travel_cost(
-            vessel, dummy_schedule, debug=debug
-        )
+        est_cost = self.simulated_annealing._est_travel_cost(vessel, sched, debug=debug)
 
         # Set a profit margin (20% recommended)
         profit_margin = 0.2
