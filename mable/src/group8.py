@@ -7,6 +7,7 @@ from mable.transport_operation import ScheduleProposal, Schedule
 from mable.extensions.fuel_emissions import VesselWithEngine
 from jank_logger import log, clear
 from mable.shipping_market import TimeWindowTrade
+import config
 
 
 class Group8Company(TradingCompany):
@@ -163,69 +164,49 @@ class Group8Company(TradingCompany):
 
     def estimate_bid_price(
         self,
-        trade: TimeWindowTrade,
-        vessel: VesselWithEngine,
-        profit_margin=0.10,
-        debug=False,
+        trade, vessel, expected_payment=None, debug=False,
     ):
         """
-        Estimate the cost for a vessel to complete a trade, and return a reasonable bid price.
+        Estimate travel cost for a trade and decide on a smart bid price.
 
-        :param trade: Trade object (pickup port, dropoff port, etc.)
-        :param pr: Port Route dictionary (paths and distances)
-        :param vessel: Vessel object (capacity, speed, etc.)
-        :param profit_margin: How much profit over cost (e.g., 0.10 = 10%)
-        :return: Suggested bid amount (float)
+        Args:
+            trade: The Trade object.
+            vessel: The Vessel object to assign the trade to.
+            expected_payment: (Optional) How much we might be paid.
+            debug: (Optional) Whether to log detailed info.
+
+        Returns:
+            - bid_price: float | None (None if we decide not to bid)
         """
+        if profit_margin is None:
+            profit_margin = config.profit_margin
+
         if debug:
             log("  Inside estimate_bid_price()")
-        pickup_port = trade.origin_port
-        dropoff_port = trade.destination_port
+
+        # Create a dummy schedule with just this trade
+        from mable.transport_operation import ScheduleProposal
+
+        dummy_schedule = ScheduleProposal()
+        dummy_schedule.add_transportation(trade, 0, 1)
+
+        # Estimate travel cost
+        est_cost = self.simulated_annealing._est_travel_cost(vessel, dummy_schedule, debug=debug)
+
+        # Set a profit margin (20% recommended)
+        profit_margin = 0.2
+
+        bid_price = est_cost * (1 + profit_margin)
+
+        # Optional: sanity check against expected payment if provided
+        if expected_payment is not None:
+            if bid_price > expected_payment:
+                if debug:
+                    print(f"[BID SKIP] Estimated bid price {bid_price:.2f} > expected payment {expected_payment:.2f}.")
+                return None
+
         if debug:
-            log(f"  Pickup port: {pickup_port}, Dropoff port: {dropoff_port}")
-        location = vessel.location
-        if isinstance(location, OnJourney):
-            location = location.destination
+            print(f"[BID] Trade {trade.origin_port.name} -> {trade.destination_port.name}")
+            print(f"    Est. cost: {est_cost:.2f}, Proposed bid: {bid_price:.2f}")
 
-        vessel_port = (
-            vessel.journey_log[-1].destination
-            if vessel.journey_log
-            else vessel.location
-        )
-
-        # Step 1: Calculate sailing distance to pickup
-        try:
-            to_pickup_distance = self.headquarters.get_network_distance(
-                vessel_port, pickup_port
-            )  # pr[vessel_port][pickup_port]["distance"]
-        except KeyError:
-            to_pickup_distance = 999999  # Big penalty if unreachable
-
-        # Step 2: Calculate sailing distance from pickup to dropoff
-        try:
-            delivery_distance = self.headquarters.get_network_distance(
-                pickup_port, dropoff_port
-            )  # pr[pickup_port][dropoff_port]["distance"]
-        except KeyError:
-            delivery_distance = 999999  # Big penalty if unreachable
-
-        total_distance = to_pickup_distance + delivery_distance
-
-        # Step 3: Estimate sailing cost (simple linear cost model)
-        cost_per_distance_unit = (
-            1.0  # 🚨 TODO: tune this based on MABLE environment settings!
-        )
-        sailing_cost = total_distance * cost_per_distance_unit
-
-        # Step 4: Add loading/unloading effort cost (optional)
-        fixed_handling_cost = (
-            100.0  # 🚨 TODO: tune this based on MABLE competition tuning!
-        )
-        total_cost = sailing_cost + fixed_handling_cost
-
-        # Step 5: Add profit margin
-        bid_price = total_cost * (1.0 + profit_margin)
-        if debug:
-            log(f"  Vessel port: {vessel_port}")
-            log(f"  Estimated bid price: {bid_price}")
         return bid_price
