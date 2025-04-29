@@ -38,7 +38,8 @@ class Group8Company(TradingCompany):
         optimized_genome, optimized_cutoffs = self.simulated_annealing.run(
             trades, fleet=self.fleet, bid_prices=bid_prices, recieve=False, debug=True
         )
-
+        log(f"optimized genome: {optimized_genome}")
+        log(f"optimized cutoffs: {optimized_cutoffs}")
         # Build a deterministic schedule from the optimized genome
         self._current_scheduling_proposal = (
             self.simulated_annealing.deterministic_schedule_from_genome(

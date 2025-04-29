@@ -11,6 +11,7 @@ from mable.simulation_space.universe import OnJourney
 from mable.competition.information import CompanyHeadquarters
 import numpy as np
 import time
+import traceback
 
 # Fuel cost per fuel unit burned (estimated). Adjust as needed.
 FUEL_COST_PER_UNIT = 3.0  # dollars per unit
@@ -126,11 +127,12 @@ class SAScheduler:
             log(f"  Initial simply scheduled trades: {simply_scheduled_trades}")
         allele = 0  # Current allele index in the genome
         vessel_index = 0  # Index of the vessel we are currently scheduling trades for
-        while allele < cutoffs[-1]:
-            while allele >= cutoffs[vessel_index]:
+        while allele < min(cutoffs[-1], len(genome)):
+            while vessel_index < len(cutoffs) and allele >= cutoffs[vessel_index]:
                 vessel_index += 1
             if vessel_index >= len(cutoffs):
                 break
+
             if debug:
                 log(f"    Scheduling trade {allele} for vessel {vessel_index}")
                 log(
@@ -159,12 +161,21 @@ class SAScheduler:
 
             if debug:
                 log(f"    Insertion point for dropoff: {insertion_dropoff}")
-            schedule_copy.add_transportation(
-                genome[allele]["trade"],
-                insertion_pickup + 1,  # 1 indexed
-                insertion_dropoff + 1,
-            )
 
+            try:
+                schedule_copy.add_transportation(
+                    genome[allele]["trade"],
+                    insertion_pickup + 1,  # 1 indexed
+                    insertion_dropoff + 1,
+                )
+            except Exception:
+                if debug:
+                    log(
+                        f"    Error scheduling trade {allele} on vessel {vessel_index} with sched: {schedule_copy.get_simple_schedule()} and insertion points: {schedule_copy.get_insertion_points()}"
+                    )
+                    log(f"    Exception: {traceback.format_exc()}")
+                schedule_copy: Schedule = schedules[vessel_index].copy()
+                exit()
             if debug:
                 log(
                     f"    Checking schedule copy feasibility: {schedule_copy.get_simple_schedule()}\n    {schedule_copy.verify_schedule()}"
@@ -284,15 +295,22 @@ class SAScheduler:
 
         travel_cost = 0
         for vessel_index, schedule in enumerate(schedules):
+            if debug:
+                log(f"  Evaluating travel cost for vessel {vessel_index}...")
+                log(f"    Schedule: {schedule.get_simple_schedule()}")
             travel_cost += self._est_travel_cost(self.fleet[vessel_index], schedule)
 
+        if debug:
+            log(f"  Total travel cost: {travel_cost}")
+            log(f"  cutoffs: {cutoffs}, genome: {genome}")
         expected_income = 0
         cutoff_index = 0
         for g, gene in enumerate(
             genome
         ):  # <-- (minor fix here: you missed enumerate before too!)
-            while g >= cutoffs[cutoff_index]:
+            while cutoff_index < len(cutoffs) and g >= cutoffs[cutoff_index]:
                 cutoff_index += 1
+
             if cutoff_index >= len(cutoffs):
                 break
             if gene["active"]:
